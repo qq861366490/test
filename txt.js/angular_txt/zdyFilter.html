@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		{{price | huoBi}}
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp" , []);
+			
+			
+			app.filter("huoBi", function(){
+				return function(input1 , cs1 , cs2){
+					input1 = input1.toFixed(2);
+					var filterValue = "¥"+ input1;
+					
+					return filterValue;
+				}
+			})
+			
+			app.controller("main",["$scope" ,"$filter", function($scope , $filter){
+				$scope.price = 123;
+				
+//				var abc = huoBiFilters($scope.price);
+				
+				
+				var abcc = $filter("huoBi")($scope.price);
+				
+				
+				console.log(abcc);
+			}]);
+		</script>
+	</body>
+</html>

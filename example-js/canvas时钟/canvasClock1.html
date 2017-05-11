@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CanvasClock</title>
+	<style type="text/css">
+		body,html,canvas {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			width: 700px;
+			height: 700px;
+			margin: 20px auto;
+			border: 1px dashed #999;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="can" width="1000" height="1000"></canvas>
+	<script type="text/javascript">
+	var dom = document.getElementById('can');
+	var can = dom.getContext('2d');
+	can.translate(500,500);
+	can.save();
+	setInterval(clock,10);
+
+	function clock(){
+		var date = new Date(),
+			h = date.getHours(),
+			m = date.getMinutes(),
+			s = date.getSeconds(),
+			ms = date.getMilliseconds();
+
+		can.clearRect(-500,-500,dom.width,dom.height);
+		can.restore();
+		can.save();
+		biao();
+		kedu();
+		hour(h,m,s);
+		minute(m);
+		second(s,ms);
+		dian();
+	};
+	function biao(){
+		can.restore();
+		can.save();
+		can.beginPath();
+		can.shadowBlur = 15;
+		can.shadowColor ="black";
+		can.shadowOffsetX = -4;
+		can.shadowOffsetY = 4;
+		can.strokeStyle = "#000";
+		can.lineWidth = 10;
+		can.arc(0,0,300,0,2*Math.PI);
+		can.closePath();
+		can.stroke();
+	};
+	
+	function kedu(){
+		can.restore();
+		can.save();
+		can.beginPath();
+		can.shadowBlur = 1;
+		can.shadowColor ="black";
+		can.shadowOffsetX = -2;
+		can.shadowOffsetY = 2;
+		can.strokeStyle= '#0ff';
+		can.lineWidth = 2;
+		for(var i=0; i<60; i++){
+			
+			can.rotate(-(2/60)*Math.PI);
+			can.moveTo(0,270);
+			can.lineTo(0,280);
+			can.stroke();
+		}
+		can.beginPath();
+		can.strokeStyle= '#0f0';
+		can.lineWidth = 4;
+		for(var i=0; i<12; i++){
+			
+			can.rotate(-(2/12)*Math.PI);
+			can.moveTo(0,260);
+			can.lineTo(0,280);
+			can.stroke();
+		}
+	};
+	
+	function hour(h,m,s){
+		var ds = 12*60*60,
+			ss = h*60*60+m*60+s;
+		can.beginPath();
+		can.restore();
+		can.save();
+		can.shadowBlur = 10;
+		can.shadowColor ="black";
+		can.shadowOffsetX = -9;
+		can.shadowOffsetY = 9;
+		can.strokeStyle= '#f0f';
+		can.lineWidth = 8;
+		can.rotate((2/ds)*ss*Math.PI);
+		can.moveTo(0,12);
+		can.lineTo(0,-100);
+		can.stroke();
+	};
+	function minute(m){
+		can.restore();
+		can.save();
+		can.beginPath();
+		can.shadowBlur = 10;
+		can.shadowColor ="black";
+		can.shadowOffsetX = -9;
+		can.shadowOffsetY = 9;
+		can.strokeStyle= '#000';
+		can.lineWidth = 4;
+		can.rotate((2/60)*m*Math.PI);
+		can.moveTo(0,12);
+		can.lineTo(0,-160);
+		can.stroke();
+	};
+	function second(s,ms){
+
+		var ss = s + ms/1000;
+		can.restore();
+		can.save();
+		can.beginPath();
+		can.shadowBlur = 10;
+		can.shadowColor ="black";
+		can.shadowOffsetX = -9;
+		can.shadowOffsetY = 9;
+		can.strokeStyle= 'red';
+		can.lineWidth = 2;
+		can.rotate((2/60)*ss*Math.PI);
+		can.moveTo(0,12);
+		can.lineTo(0,-200);
+		can.stroke();
+	};
+	function dian(){
+		can.beginPath();
+		can.fillStyle= 'gold';
+		can.arc(0,0,6,0,2*Math.PI);
+		can.fill();
+		can.beginPath();
+		can.fillStyle= '#000';
+		can.arc(0,0,3,0,2*Math.PI);
+		can.fill();
+	};
+
+	</script>
+</body>
+</html>

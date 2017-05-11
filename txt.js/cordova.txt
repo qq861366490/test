@@ -1,0 +1,16 @@
+1 环境准备,   java JDK  android SDK  环境变量配置等
+
+2 通过全局安装cordova软件(需要安装nodejs,包括npm)
+
+3 创建app  cordova create 命令创建  具体如下:
+	cordova create 项目目录名 appid 项目名
+
+4 添加打包环境,以添加Android为例:   cordova platform android --save  (如需添加其他系统,则只需修改平台名即可)
+
+5 构建项目,打包成app   cordova build android (如需添加其他系统,则只需修改平台名即可)
+
+6 在模拟器上运行   cordova emulate android
+
+7 在真机上运行测试   cordova run andriod
+
+8 运行开发代码位于 www目录内  默认index.html文件引入index.js index.css  剩下文件引入使用根据业务需求正常导入即可

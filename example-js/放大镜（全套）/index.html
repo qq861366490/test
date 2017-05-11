@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+
+		<div class="reading-glass">
+			<div class="glass-main">
+				<div class="small-wrap">
+					<img class="small" src="imgs/mid1.jpg">
+					<div class="filter"></div>
+				</div>
+				<div class="large-wrap">
+					<img class="large" src="imgs/mid1.jpg">
+				</div>
+			</div>
+			<div class="glass-extra">
+				<div class="img-wrap">
+					<div class="img-wrap-inner">
+						<img src="imgs/small1.jpg" class="img-hover" data-url="imgs/mid1.jpg">
+						<img src="imgs/small2.jpg" data-url="imgs/mid2.jpg">
+						<img src="imgs/small3.jpg" data-url="imgs/mid3.jpg">
+						<img src="imgs/small4.jpg" data-url="imgs/mid4.jpg">
+						<img src="imgs/small5.jpg" data-url="imgs/mid5.jpg">
+						<img src="imgs/small6.jpg" data-url="imgs/mid6.jpg">
+						<img src="imgs/small5.jpg" data-url="imgs/mid5.jpg">
+						<img src="imgs/small6.jpg" data-url="imgs/mid6.jpg">
+					</div>
+				</div>
+				<span class="arrow arrow-prev"></span>
+				<span class="arrow arrow-next"></span>
+			</div>
+		</div>
+
+		<script src="../js/$.js"></script>
+		<script>
+			'use strict';
+			window.onload = function(){
+				var smallWrap = $('.small-wrap')[0],
+					largeWrap = $('.large-wrap')[0],
+					filter = $('.filter')[0],
+					smallImg = $('.small-wrap img')[0],
+					largeImg = $('.large')[0],
+					imgWrapInnter = $('.img-wrap-inner')[0],
+					imgs = $('.img-wrap img'),
+					arrows = $('.glass-extra .arrow');
+
+				imgWrapInnter.style.width = imgs.length * 58 + 'px';
+
+				var smOffset = offset(smallWrap); // {left:200,top:300}
+
+				//鼠标经过small-wrap时。显示滤镜和大图
+				smallWrap.addEventListener('mouseenter',function(){
+					//show自己封装的用于显示元素的方法
+					show(largeWrap);
+					show(filter);
+				});
+				//鼠标离开small-wrap时。显示滤镜和大图
+				smallWrap.addEventListener('mouseleave',function(){
+					//hide自己封装的用于隐藏元素的方法
+					hide(largeWrap);
+					hide(filter);
+				});
+
+				//鼠标在small-wrap上面移动，更改滤镜的位置及大图的位置
+				smallWrap.addEventListener('mousemove',function(e){
+					e = e || window.event; 
+
+					//获取鼠标相对于small-wrap的位置
+					var x = e.clientX - smOffset.left - 120, //120是滤镜的宽度的一半
+						y = e.clientY - smOffset.top - 120;
+
+					//边界处理
+					x = x < 0 ? 0 : (x > 110 ? 110 : x);
+					y = y < 0 ? 0 : (y > 110 ? 110 : y);
+
+					//更改滤镜位置
+					filter.style.left = x + 'px';
+					filter.style.top = y + 'px';
+					//更改大图位置
+					largeImg.style.left = -2*x + 'px';
+					largeImg.style.top = -2*y + 'px';
+				});
+
+				//鼠标经过小图
+				
+				for(var i=0,len=imgs.length; i<len; i++){
+					imgs[i].onmouseenter = function(){
+						for(var j=0; j<len; j++){
+							removeClass(imgs[j],'img-hover')
+						}
+						addClass(this,'img-hover');
+					var imgUrl = attr(this,'data-url')
+						smallImg.src = imgUrl;
+						largeImg.src = imgUrl;
+						
+					}
+					
+				}
+				//右箭头点击
+				var num=0;
+				var max = len-5;
+				
+				arrows[1].onclick = function(){
+					num++;
+					if(num>max){
+						num = max;
+						return;
+					}
+					animate(imgWrapInnter,{left:-58*num});
+					
+					imgsMove();
+				}
+				//左点击
+				arrows[0].onclick = function(){
+					num--;
+					if(num<0){
+						num = 0;
+						return;
+					}
+					animate(imgWrapInnter,{left:-58*num});
+					
+					imgsMove();
+				}
+				
+				function imgsMove(){
+					
+					for(var j=0; j<len; j++){
+						removeClass(imgs[j],'img-hover');
+					}
+					addClass(imgs[num],'img-hover');
+					var imgUrl = attr(imgs[num],'data-url')
+						smallImg.src = imgUrl;
+						largeImg.src = imgUrl;
+				}
+				
+			}
+
+			/*
+				键盘码  e.keyCode || e.which
+				阻止默认事件 e.preventDefault ? e.preventDefault() : e.returnValue=false; 
+				阻止冒泡： e.stopPropagation ? e.stopPropation() : e.cancelBubble = true;
+				事件源： e.target || e.srcElement
+				添加事件监听： 元素.addEventListener(type,fn,useCapture)  
+							   元素.attachEvent('on'+type,fn);
+
+				获取元素样式值： window.getComputedStyle(元素)[样式名]
+							     元素.currentStyle(样式名)
+			*/
+		</script>
+	</body>
+</html>

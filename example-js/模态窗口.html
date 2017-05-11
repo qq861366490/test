@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模态窗口</title>
+		<style type="text/css">
+			html,body,div,h3,p,span,a {
+				margin: 0;
+				padding: 0;
+			}
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+			img {
+				border: none;
+			}
+			
+			.news {
+				width:  600px;
+				height: 700px;
+				background-color: #ccc;
+				margin: 0 auto;
+				position: relative;
+			}
+			.news .sendNew {
+				position: absolute;
+				bottom: 20px;
+				left: 20px;
+				width: 100px;
+				line-height: 30px;
+				text-align: center;
+				background-color: #3cb4ff;
+				color: #fff;
+				cursor: pointer;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.clearFix:before,.clearFix:after {
+				display: table;
+				content:"";
+			}
+			.clearFix:after {
+				clear: both;
+			}
+			.container {
+				width: 600px;
+				height: 630px;
+				margin: 0 auto;
+				overflow: auto;
+				
+			}
+			.content {
+				width: 450px;
+				height: 180px;
+				margin: 20px auto;
+				
+				border-bottom: 1px solid #999;
+			}
+			.content .con-img {
+				float: left;
+				width: 120px;
+				height: 150px;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.content .con-img img {
+				width: 100%;
+				height: 100%;
+				-webkit-user-select: none;
+						user-select: none;
+				
+			}
+			.content .con-title {
+				width: 320px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.content .con-new {
+				float: left;
+				width: 320px;
+				height: 120px;
+				text-indent: 2em;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.new-container {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-color: rgba(0,0,0,0.5);
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.new-container .new-content {
+				width: 400px;
+				height: 200px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -100px;
+				margin-left: -200px;
+				background-color: #fff;
+				padding-bottom: 30px;
+			}
+			.new-container .new-content .new-con-title {
+				width: 380px;
+				padding-left: 20px;
+				line-height: 30px;
+				background-color: #3cb4ff;
+				color: #fff;
+				margin-bottom: 10px;
+				cursor: move;
+			}
+			.new-container .new-content .new-con-top {
+				width: 400px;
+				height: 20px;
+				margin-bottom: 10px;
+			}
+			.new-container .new-content .new-con-top .new-con-input {
+				width: 300px;
+			}
+			.new-container .new-content .new-con-bottom {
+				width: 400px;
+				height: 100px;
+				
+			}
+			.new-container .new-content .new-con-bottom .new-con-text {
+				width: 300px;
+				height: 80px;
+				resize: none;
+
+			}
+			.send-en {
+				height: 30px;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.ensure {
+				float: left;
+				width: 100px;
+				line-height: 30px;
+				text-align: center;
+				background-color: #3cb4ff;
+				color: #fff;
+				margin-left: 80px;
+				margin-bottom: 20px;
+			}
+			.cancel {
+				float: left;
+				width: 100px;
+				
+				line-height: 30px;
+				text-align: center;
+				background-color: #c33;
+				color: #fff;
+				margin-left: 20px;
+				
+			}
+			.show {
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="news">
+			<div class="container clearFix">
+				<div class="content">
+					<a href="#" class="con-img"><img src="imgs/news.png" /></a>
+					<h3 class="con-title"><a href="#">习近平同特朗普通电话 特朗普：坚持奉行一个中国政策</a></h3>
+					<p class="con-new">
+						<a href="#">习近平祝贺特朗普正式就任美国总统，感谢特朗普2月8日来信就元宵
+						节和中国农历鸡年向中国人民致以节日祝福，对特朗普表示愿意努力拓展中美合作、
+						发展惠及中美两国和国际社会的建设性双边关系表示高度赞赏……</a><br>
+						<span class="con-date">2017-02-10 12:10</span>
+					</p>
+				</div>
+			</div>
+			<div class="sendNew">发布新闻</div>
+			
+		</div>
+		<div class="new-container">
+			<div class="new-content">
+				<p class="new-con-title">新闻发布</p>
+				<div class="new-con-top">
+					<span>新闻标题</span>
+					<input type="text"  class="new-con-input"/>
+				</div>
+				<div class="new-con-bottom">
+					<span>新闻内容</span>
+					<textarea class="new-con-text" maxlength ="150" ></textarea>
+					<p class="show"></p>
+			 	</div>
+				<div class="send-en">
+					<a class="ensure" href="javascript:;">确定</a>
+					<a class="cancel" href="javascript:;">取消</a>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/$.js"></script>
+		<script type="text/javascript">
+			"use strict";
+		window.onload = function(){
+			var sendNew = $('.sendNew')[0],
+				newContainer = $('.new-container')[0],
+				newcontitle = $('.new-con-title')[0],
+				newcontent = $('.new-content')[0],
+				newconInput = $('.new-con-input')[0],
+				newconText = $('.new-con-text')[0],
+				container = $('.container')[0],
+				content = $('.content')[0],
+				ensure = $('.ensure')[0],
+				cancel = $('.cancel')[0],
+				show = $('.show')[0],
+				flag = false;
+				
+			newconText.addEventListener('focus',showT,false);
+			newconText.addEventListener('blur',function(){
+				show.innerHTML = '';
+			},false);
+			newconText.addEventListener('input',showT,false);
+			function showT(){
+				var v = newconText.value,
+					sum = 150-(v.length);
+					if(sum < 0 ){
+						sum = 0;
+						return;
+					} 
+				show.innerHTML = '还可以输'+sum+'个字';
+			}
+			
+			sendNew.addEventListener("click",function(){
+				flag = true;
+				newContainer.style.display = 'block';
+				newcontent.style.left = '50%';
+				newcontent.style.top = '50%';
+				newconInput.value = '';
+				newconText.value = '';
+			},false)
+			window.onresize = function(){
+				newcontent.style.left = '50%';
+				newcontent.style.top = '50%';
+				
+			}
+			cancel.addEventListener("click",function(){
+				newContainer.style.display = 'none';
+				flag = false;
+				
+			},false)
+			ensure.addEventListener("click",send,false)
+			document.onkeydown = function(e){
+				e = e || window.event;
+				var code = e.keyCode || e.which;
+				if(e.ctrlKey == true && code == 13){
+					send();
+				}
+			}
+			function send(){
+				var t = newconInput.value,
+					c = newconText.value;
+				var date = new Date(),
+					y = date.getFullYear(),
+					m = date.getMonth()+1,
+					m = add0(m),
+					d = date.getDate(),
+					d = add0(d),
+					h = date.getHours(),
+					h = add0(h),
+					mi = date.getMinutes(),
+					mi = add0(mi);
+					
+					
+				var div1 = document.createElement('div');
+				div1.className = 'content';
+				div1.innerHTML = `<a href="#" class="con-img"><img src="imgs/news.png" /></a>
+					<h3 class="con-title"><a href="#">`+t+`</a></h3>
+					<p class="con-new">
+						<a href="#">`+c+`</a><br>
+						<span class="con-date">`+y+`-`+m+`-`+d+` `+h+`:`+mi+`</span></p>`;
+				
+				if(!flag){
+					return;
+				}
+				if(c.trim() == '' || t.trim() == ''){
+					alert("发布内容不能为空");
+					return;
+				}
+				if(c.length > 150){
+					alert("字数超过限制（150字）");
+					return;
+				}
+				var first = container.firstElementChild;
+				container.insertBefore(div1,first);
+				
+				newContainer.style.display = 'none';
+				flag = false;
+			}
+			newcontitle.addEventListener('mousedown',function(){
+				
+				document.onmousemove = function(e){
+					e = e || window.event;
+					e.preventDefault ? e.preventDefault() : e.returnValue = false;
+					var x = e.clientX, //鼠标距可视文档左边的距离
+						y = e.clientY,//鼠标距可视文档上边的距离
+						cw = newcontent.offsetWidth,//小div宽，移动的模态框
+						ch = newcontent.offsetHeight,//小div高
+						ncw = newContainer.offsetWidth,//可视文档宽
+						nch = newContainer.offsetHeight,//可视文档高
+						th = newcontitle.offsetHeight;//小div的title高。宽跟div一样
+					var	l = x < cw/2 ? 0 : (x > ncw-cw/2 ? ncw-cw : x - cw/2);
+					var	t = y < th/2 ? th/2-ch/2 : (y > nch-(ch-th/2) ? nch-ch-ch/2+th/2 : y-ch/2);
+					
+					newcontent.style.left = l+cw/2 +'px';
+					newcontent.style.top = t+ch-th+'px';
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			},false);
+			
+		}
+		</script>
+	</body>
+</html>

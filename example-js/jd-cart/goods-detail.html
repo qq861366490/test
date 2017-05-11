@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			html,
+			body,
+			div,
+			img,
+			input {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: "微软雅黑";
+			}
+			.top {
+				height: 30px;
+				background-color: #F1F1F1;
+				text-align: center;
+			}
+			.top2 {
+				height: 143px;
+				background-color: #fff;
+				text-align: center;
+				border-bottom: 2px solid #B1191A;
+			}
+			
+			.main {
+				width: 1210px;
+				margin: 30px auto 0;
+			}
+			.main .left {
+				float: left;
+				width: 450px;
+				height: 450px;
+				border: 1px solid #ccc;
+			}
+			.main .right {
+				float: right;
+				width: 740px;
+			}
+			.goods-price {
+				color: #c33;
+				font-weight: 700;
+				font-size: 18px;
+			}
+			.goods-style:after {
+				display: table;
+				content: '';
+				clear: both;
+			}
+			.goods-style-item {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				border: 1px solid #ccc;
+				margin-right: 10px;
+				cursor: pointer;
+				color: #666;
+				background-color: #F7F7F7;
+			}
+			.goods-style-item.selected,
+			.goods-style-item:hover {
+				border-color: #c33;
+			}
+			.goods-style-item img {
+				vertical-align: middle;
+				border: 0;
+				margin-top: -3px;
+			}
+			.goods-style-item span {
+				font-size: 12px;
+				padding: 0 8px;
+			}
+			
+			.option {
+				position: relative;
+				margin-top: 20px;
+				height: 30px;
+			}
+			.option .option-item {
+				position: absolute;
+				top: 0;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			.option .option-item:hover {
+				border-color: #c33;
+			}
+			.option .option-decrease,
+			.option .option-increase{
+				left: 0;
+				width: 28px;
+				line-height: 28px;
+				cursor: pointer
+			}
+			.option .option-input {
+				left: 30px;
+				height: 28px;
+				width: 48px;
+				outline: none;
+			}
+			.option .option-increase {
+				left: 80px;
+			}
+			
+			.add-to-cart {
+				width: 200px;
+				height: 45px;
+				line-height: 45px;
+				margin-top: 30px;
+				color: #fff;
+				text-align: center;
+				font-size: 18px;
+				background-color: #c33;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="top">
+			<img src="img/detail-top.png" alt="" />
+		</div>
+		<div class="top2">
+			<img src="img/detail-top2.png" alt="" />
+		</div>
+		
+		<div class="main">
+			<div class="left">
+				<img src="http://192.168.55.44/PC-Project-Admin/image/58773bc6Nd466d176-large.jpg">
+			</div>
+			<div class="right">
+				<p>NB F150（17-27英寸）电脑显示器支架 液晶显示器支架 旋转升降伸缩支架 挂架 黑色</p>
+				<p><span>价格：</span><span class="goods-price">99.00</span></p>
+				<div class="goods-style">
+					
+				</div>
+				<div class="option">
+					<span class="option-item option-decrease">-</span>
+					<input class="option-item option-input"type="text" value="1">
+					<span class="option-item option-increase">+</span>
+				</div>
+				<div class="add-to-cart">加入购物车</div>
+			</div>
+		</div>
+		
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/layer.js"></script>
+		<script src="js/template.js"></script>
+		
+		<script id="gtype" type="text/html">
+			{{each data as v}}
+				<div class="goods-style-item" data-id="{{v.id}}" data-stock="{{v.goods_stock}}" data-price="{{v.goods_price}}">
+					<img src="{{v.goods_pic_s}}">
+					<span>{{v.goods_type}}</span>
+				</div>
+			{{/each}}
+		</script>
+		
+		<script>
+			$(function(){
+				
+				var detail = {
+					gStyleBox: $('.goods-style'),
+					gPriceBox: $('.goods-price'),
+					init: function(){
+						this.initData();
+						this.gstyleClick();
+						this.addToCart();
+					},
+					initData: function(){
+						var _this = this;
+						$.ajax({
+							url: 'http://192.168.55.44/PC-Project-Admin/goods.php',
+							dataType: 'jsonp',
+							success: function(data){
+								_this.initGoodsStyle(data);
+							}
+						});
+					},
+					initGoodsStyle: function(data){
+						this.gStyleBox.html( template('gtype',{data:data}) );
+						this.gStyleBox.find('.goods-style-item:first').addClass('selected');
+					},
+					gstyleClick: function(){
+						var _this = this;
+						this.gStyleBox.on('click','.goods-style-item',function(){
+							$(this).addClass('selected').siblings().removeClass('selected');
+							//价格
+							_this.gPriceBox.html( $(this).data('price') );
+						});
+					},
+					addToCart: function(){
+						$('.add-to-cart').click(function(){
+							var 
+								id = $('.goods-style-item.selected').data('id'),
+								amount = $('.option-input').val();
+							
+							//调用ajax添加至购物车（数据库）
+							$.ajax({
+								type: 'post',
+								url: 'http://192.168.55.44/PC-Project-Admin/addToCart.php',
+								data: {
+									id: id,
+									amount: amount
+								},
+								dataType: 'jsonp',
+								success: function(data){
+									console.log(data);
+									layer.alert(data.info);
+								}
+							});
+						});
+					}
+				};
+				detail.init();
+			});
+			
+		</script>
+	</body>
+</html>

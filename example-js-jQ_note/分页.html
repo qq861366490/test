@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">	
+		<title></title>
+		<style type="text/css">
+			.pictures {
+				width: 1000px;
+				margin: 100px auto;
+			}
+			.pictures .content img {
+				width: 200px;
+				margin: 20px 12px;
+				padding: 0;
+			}
+			.pictures .page-num li {
+				float: left;
+				width: 20px;
+				height: 20px;
+				list-style: none;
+				text-align: center;
+				border: 1px solid #999;
+				margin-right: 5px;
+				cursor: pointer;
+			}
+			.pictures .page-num li:hover,
+			.pictures .page-num li.active {
+				border-color: #c33;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="pictures">
+			<div class="content"></div>
+			<ul class="page-num"></ul>
+		</div>
+
+		<script type="text/javascript" src="jquery-1.11.3.js"></script>
+		<script>
+			'use strict';
+			$(function(){
+				var con = $('.pictures .content'),
+					pageNum = $('.pictures .page-num');
+
+				//初始化
+				$.ajax({
+					url: 'http://192.168.55.44/lebo/php/getShow.php',
+					data: {
+						page_id: 1,
+						num: 4
+					},
+					dataType: 'jsonp',
+					success: function(data){
+						//生成页码
+						handlePageNum(data.page_total);
+						
+						//生成内容
+						handleCon(data.result);
+					}
+				});
+
+				//.click
+				/*
+					 对象.on(事件名称,处理函数)  普通事件
+					 对象.on(事件名称,子元素选择器,处理函数)   事件委托
+				*/
+				pageNum.on('click','.page-num-item',function(){
+					//console.log(this);
+					$(this).addClass('active');
+					$(this).siblings().removeClass('active');
+
+					//重新加载数据
+					$.ajax({
+						url: 'http://192.168.55.44/lebo/php/getShow.php',
+						data: {
+							page_id: $(this).html()
+						},
+						dataType: 'jsonp',
+						success: function(data){
+							//生成内容
+							handleCon(data.result);
+						}
+					});
+
+				});
+
+				//动态生成页码
+				function handlePageNum(num){
+					var str = '';
+					for(var i=0; i<num; i++){
+						str += '<li class="page-num-item">'+(i+1)+'</li>';
+					}
+					pageNum.html(str);
+					pageNum.find('li:first').addClass('active');
+				}
+				//动态生成分页内容
+				function handleCon(data){
+					var str = '';
+					for(var i=0,len=data.length; i<len; i++){
+						str += '<img src="'+data[i]['pic-url']+'">';
+					}
+					con.html(str);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,298 @@
+html,body,div,form,label,input,b,span,p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+form {
+  width: 510px;
+  margin: 50px auto;
+}
+form h1 {
+  width: 140px;
+  margin-bottom: 30px;
+  margin-left: 140px;
+}
+label {
+  width: 510px;
+  height: 40px;
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+span {
+  float: left;
+  display: block;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  margin-right: 10px;
+}
+input:not([type="submit"]) {
+  float: left;
+  width: 200px;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0 10px;
+  
+}
+textarea {
+	float: left;
+  width: 200px;
+  height: 90px;
+  line-height: 28px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0 10px;
+  resize: none;
+}
+input:not([type="submit"]):hover {
+  border: 1px solid #999;
+}
+
+input:not([type="submit"]).current {
+  border: 2px solid #7fcbfe;
+  box-shadow: 0px 0px 3px #7fcbfe;
+  
+}
+input:not([type="submit"]).ok {
+  border: 1px solid #ccc;
+}
+input:not([type="submit"]).error {
+  border: 2px solid #f77799;
+	box-shadow: 0px 0px 3px #f77799;
+}
+input[type="submit"] {
+  width: 230px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #f60;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 80px;
+  margin-left: -400px;
+}
+input[type="submit"]:hover {
+  background-color: #f40;
+}
+p.p {
+	margin-top: 100px;
+	text-align: center;
+	
+}
+p.p a {
+	font-size: 26px;
+}
+.errorcon {
+  width: 200px;
+  height: 150px;
+  border: 2px solid #7fcbfe;
+  box-shadow: 0px 0px 3px #7fcbfe;
+  background-color: #fff;
+  color: #000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -100px;
+}
+
+.errorcon span {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 35px;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.errorcon em {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-top: -2px;
+  margin-right: 6px;
+  vertical-align: middle;
+  background: url(/images/v-icon-2.png) no-repeat center;
+}
+
+.errorcon p {
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+}
+
+.okcon {
+  width: 200px;
+  height: 150px;
+  border: 2px solid #7fcbfe;
+  box-shadow: 0px 0px 3px #7fcbfe;
+  background-color: #fff;
+  color: #000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  
+  margin-top: -100px;
+  margin-left: -100px;
+}
+
+.okcon span {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 35px;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.okcon em {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 6px;
+  margin-top: -2px;
+  vertical-align: middle;
+  background: url(/images/v-icon-3.png) no-repeat center;
+}
+.okcon p {
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+}
+h1 {
+	text-align: center;
+}
+li {
+	list-style: none;
+}
+ul.list {
+	width: 500px;
+	margin: 20px auto;
+}
+ul.list li {
+	line-height: 40px;
+}
+ul.list li a {
+	font-size: 20px;
+}
+ul.goods {
+	width: 500px;
+	margin: 20px auto;
+}
+ul.goods li {
+	width: 100%;
+	height: 50px;
+	line-height: 40px;
+	font-size: 26px;
+}
+ul.goods li span {
+	width: 200px;
+}
+ul.goods li s {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	
+}
+ul.goods li span.note {
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+form.file-form {
+  height: auto !important;
+}
+.file-form label span {
+  margin-left: 70px;
+  
+}
+.file-form label p {
+  margin-left: 10px;
+}
+.file-form .headImg {
+  height: auto !important;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.file-form .username {
+  height: auto !important;
+  min-height: 40px;
+  width: 100%;
+  margin-top: 40px;
+}
+.file-form .username p {
+  float: left;
+  width: 100px;
+  margin-top: 6px;
+}
+.file-form .mail {
+  height: auto !important;
+  width: 100%;
+  margin-top: 40px;
+}
+.file-form .mail p {
+  float: left;
+  width: 100px;
+  margin-top: 8px;
+}
+.file-form .headImg img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+}
+.file-form .file  {
+  width: 230px;
+  height: auto !important;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.file-form .file input[name="headImg"] {
+  border: none;
+  float: left;
+  margin-left: 80px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.file-form .file input[type="submit"] {
+  width: 60px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #f60;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 0;
+  margin-bottom: 30px;
+}

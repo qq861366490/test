@@ -1,0 +1,42 @@
+ //初始化当前目录为git版本管理目录
+ git init
+
+ //第一次使用,配置用户名以及邮箱
+ git config --global user.name "zhuiszhu"
+git config --global user.email "1799150010@qq.com"
+
+
+//将修改提交到版本管理当中
+git add 文件名
+(添加多文件  用空格连接文件名即可)
+
+//将修改提交到库当中
+git commit -m"注释"
+(commit之前一定要add  可以多次add 一次commit -m"注释一定要写") 
+
+
+//查看文件修改
+git diff 文件名    
+(注意  diff 命令会优先将工作区文件和暂存区文件进行对比,如果暂存区没有文件则和本地库中文件进行对比, 最后显示出差异)
+
+//查看历史版本
+git log  
+git log --pretty=oneline //历史版本在一行内显示
+
+//时光穿梭机
+git reset --hard HEAD^ //回退一个版本
+git reset --hard HEAD^^ //回退两个版本
+git reset --hard 版本id //进入到指定版本
+
+//显示历史所有版本操作信息 
+git reflog
+
+//克隆远端库到本地
+git clone 远端库地址
+
+//将本地库关联到远端库
+git remote add origin 远端库地址
+
+//将本地库推送到远端库
+git push -u origin master
+-u 代表记录本次关联 仅在第一次推送使用  后期可不使用该参数

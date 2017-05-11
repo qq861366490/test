@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.container {
+				overflow: hidden;
+				position: relative;
+				width: 260px;
+				height: 163px;
+				margin: 100px auto;
+			}
+			.container img {
+				position: relative;
+			}
+			.container .intro {
+				position: absolute;
+				top: 0;
+				left: -260px;
+				width: 100%;
+				height: 100%;
+			}
+			.container .intro .bg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: .7;
+				background-color: #000;
+			}
+			.container .intro span {
+				position: absolute;
+				top: 0;
+				left: 0;
+				text-align: center;
+				color: #eee;
+				margin-top: 40px;
+				padding: 0 10px;
+				line-height: 30px;
+				font-family: "Microsoft Yahei";
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="container">
+			<img src="img/1004.jpg">
+			<div class="intro">
+				<div class="bg"></div>
+				<span>假如有来生，我要变成一棵树，站成永恒，没有悲欢的姿势。</span>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="jquery-1.11.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				/*
+					e.pageX  获取鼠标距离文档左边界的距离
+					e.pageY  获取鼠标距离文档最上方的距离（包含滚动条的高度）
+					
+					e.offsetX  e.offsetY  获取鼠标距离元素的位置
+
+					事件对象 e
+					事件源  e.target
+					阻止冒泡：e.stopPropagation()
+					阻止默认事件：e.preventDefault()
+					键盘码: e.which
+				*/
+				var width = 260,
+					height = 163;
+
+				var direcPos = [
+					{top: -163,left:0},
+					{top: 0,left: 260},
+					{top: 163,left: 0},
+					{top: 0,left: -260}
+				]; 
+				function handleDirection(obj,e){
+
+					var w = (width > height) ? height/width : 1;
+					var t =  (height > width) ? width / height : 1;
+
+					var x  = (e.pageX - $(obj).offset().left - width/2 )*w;
+					var y = (e.pageY - $(obj).offset().top - height/2)*t;
+
+					var direction = Math.round(((Math.atan2(y,x) * (180/Math.PI) + 180)/90)+3)%4;
+					/*
+						0  top
+						1  right
+						2  bottom
+						3  left
+					*/
+					console.log(direction);
+					return direction;
+				}
+
+				$('.container').hover(function(e){
+					var img = $(this).find('img'),
+						intro = $(this).find('.intro');
+
+					var dirc = handleDirection(this,e);
+
+					intro.css({
+						left: direcPos[dirc].left,
+						top: direcPos[dirc].top
+					});
+
+					img.animate({
+						width: 260*1.2,
+						height: 163*1.2,
+						left: -260*0.1,
+						top: -163*0.1
+					});
+
+					intro.animate({
+						left: 0,
+						top: 0
+					});
+
+					
+				},function(e){
+					var img = $(this).find('img'),
+					intro = $(this).find('.intro');
+
+					var dirc = handleDirection(this,e);
+					intro.animate({
+						left: direcPos[dirc].left,
+						top: direcPos[dirc].top
+					});
+
+					img.animate({
+						width: 260,
+						height: 163,
+						left: 0,
+						top: 0
+					});
+
+					
+				});
+			});
+		</script>
+	</body>
+</html>

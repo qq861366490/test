@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,html,ul,li,div{
+            padding:0;
+            margin: 0;
+        }
+        .main{
+            margin: 30px auto;
+            width:500px;
+            height: 500px;
+            /*border: 1px dashed #ccc;*/
+            display: flex;
+        }
+        
+        .main .left{
+            flex: 6;
+            height: 100%;
+        }
+        .main aside{
+            flex: 4;
+            height: 100%;
+            background: #3c72ef;
+            border-radius: 3px;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.33);
+        }
+
+        .main aside header{
+            text-align: center;
+            color: #fff;
+            font: 22px/45px 'microsoft YaHei';
+            height: 45px;
+            border-bottom:1px solid rgba(0,0,0,0.45);
+            position: relative;
+        }
+        .main aside header::after{
+            content:"";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.46);
+            position: absolute;
+            left: 0;
+            bottom:-2px;
+            z-index: 1;
+        }
+
+        .main aside li{
+            list-style-type: none;
+        }
+        .main aside li:hover{
+            background: rgba(255,255,255,0.44);
+        }
+        .main aside li a{
+            text-decoration: none;
+            color: #fff;
+            font: 16px/36px "microsoft yahei";
+            padding: 0 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="left">
+            <div id="message-box"></div>
+            <input type="text" id="message" />
+            <a href="javascript:send();">发送</a>
+        </div>
+        <aside>
+            <header>好友列表</header>
+            <ul>
+                <li>
+                    <a href="javascript:;"></a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var ws = new WebSocket("ws://127.0.0.1:9000");
+
+        ws.onopen = function () { }
+        //获取好友列表容器对象
+        var ulDom = $("aside").find("ul");
+        //获取好友列表模板对象
+        var liDom = ulDom.find("li").clone(false);
+
+        //清空模板
+        ulDom.empty();
+
+
+        ws.onmessage = function (event) {
+            //获取服务端传来的消息
+            var userList = JSON.parse(event.data);
+
+            for (var i = 0; i < userList.length; i++) {
+                //每次从模板中克隆新的对象出来,而不是对模板进行操作
+                var module = liDom.clone(false);
+
+                module.find("a").text(userList[i]);
+
+                ulDom.append(module);
+            }
+
+        }
+
+        // function send(){
+        //     var txt = document.getElementById("message").value;
+
+        //     var userObj = {
+        //         name : "zhuiszhu",
+        //         ip : "192.168.55.48"
+        //     }
+
+        //     userObj = JSON.stringify(userObj);
+        //     ws.send(userObj);
+        // }
+    </script>
+</body>
+
+</html>

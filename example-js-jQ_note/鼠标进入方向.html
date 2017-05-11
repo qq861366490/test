@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.container {
+			width: 1000px;
+			height: 600px;
+			margin: 100px auto;
+		}
+	    .container .con {
+            width: 400px;
+            height: 260px;
+            float: left;
+            margin-right: 80px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+       }
+       .container .con img {
+            position: relative;
+       }
+        .container .con .content {
+            width: 400px;
+            height: 260px;
+            position: absolute;
+            text-align: center;
+            left: -400px;
+            top: 0;
+       }
+        .container .con .item {
+            width: 400px;
+            height: 260px;
+            background-color: rgba(0,0,0,0.7);
+       }
+        .container .con span {
+            width: 240px;
+            position: absolute;
+            color: #fff;
+            left: 80px;
+            top: 130px;
+        }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="con">
+            <img src="../imgs/1.jpg">
+            <div class="content">
+                <div class="item"></div>
+                <span>假如我是一棵树，我要站成永恒，用没有悲哀的姿势。</span>
+            </div>     
+        </div>
+        <div class="con">
+            <img src="../imgs/1.jpg">
+            <div class="content">
+                <div class="item"></div>
+                <span>假如我是一棵树，我要站成永恒，用没有悲哀的姿势。</span>
+            </div>     
+        </div>
+        <div class="con">
+            <img src="../imgs/1.jpg">
+            <div class="content">
+                <div class="item"></div>
+                <span>假如我是一棵树，我要站成永恒，用没有悲哀的姿势。</span>
+            </div>     
+        </div>
+        <div class="con">
+            <img src="../imgs/1.jpg">
+            <div class="content">
+                <div class="item"></div>
+                <span>假如我是一棵树，我要站成永恒，用没有悲哀的姿势。</span>
+            </div>     
+        </div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript">
+	'use strict';
+ 	$(function(){ 
+        function Banner(banner){
+            this.con = banner,
+            this.img = this.con.find('img'),
+            this.content = this.con.find('.content'),
+            this.width = this.img.width(),
+            this.height = this.img.height();
+            this.direc = [
+                {
+                    left: 0,
+                    top: -260
+                },
+                {
+                    left: 400,
+                    top: 0
+                },
+                {
+                    left: 0,
+                    top: 260
+                },
+                {
+                    left: -400,
+                    top: 0
+                }
+            ];
+        }
+
+        Banner.prototype = {
+            // constructor: Banner,
+            // __proto__: Banner.prototype.__proto__,
+            hover: function(){
+                var _this = this;
+                this.con.hover(function(e){
+                    var i = _this.handleDirection(_this.con,e);
+                    _this.img.stop(true).animate({
+                        width: _this.width*1.2,
+                        height: _this.height*1.2,
+                        left: -_this.width*0.1,
+                        top: -_this.height*0.1
+                    });
+                    _this.content.css({
+                        left: _this.direc[i].left,
+                        top: _this.direc[i].top
+                    })
+                    _this.content.stop(true).animate({
+                        left: 0,
+                        top: 0
+                    })
+                },function(e){
+                    var i = _this.handleDirection(_this.con,e);
+                    _this.img.stop(true).animate({
+                        width: _this.width,
+                        height: _this.height,
+                        left: 0,
+                        top: 0
+                    });
+                    _this.content.css({
+                        left: 0,
+                        top: 0
+                    })
+                    _this.content.stop(true).animate({
+                        left: _this.direc[i].left,
+                        top: _this.direc[i].top
+                    });
+                });
+            },
+            handleDirection: function(obj,e){
+                var w = (this.width > this.height) ? this.height/this.width : 1,
+                    t = (this.height > this.width) ? this.width/this.height : 1;
+                var x = (e.pageX - $(obj).offset().left - this.width/2)*w,
+                    y = (e.pageY - $(obj).offset().top - this.height/2)*t;
+                var direction = Math.round( ( (Math.atan2(y,x)*(180/Math.PI)+180)/90) + 3 )%4;
+                return direction;
+            }
+        }
+        var banner1 = $('.container .con:eq(0)'),
+            banner2 = $('.container .con:eq(1)'),
+            banner3 = $('.container .con:eq(2)'),
+            banner4 = $('.container .con:eq(3)');
+        new Banner(banner1).hover();
+        new Banner(banner2).hover();
+        new Banner(banner3).hover();
+        new Banner(banner4).hover();
+      
+    });
+	</script>
+</body>
+</html>

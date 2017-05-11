@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		
+	</div>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/highcharts.js"></script>
+	<script type="text/javascript">
+	//'use strict';
+ 	$(function(){ 
+ 		$.ajax({
+ 			type: 'get',
+ 			url: 'http://192.168.55.44/jsonp/getData.php',
+ 			data: {
+ 				 
+ 			},
+ 			dataType: 'jsonp',
+ 			//jsonp: 'callback',
+ 			success: function(data){
+ 				
+ 				$('.container').highcharts({
+		            chart: {
+		                type: 'column'   //图表类型 
+		            },
+		            title: {
+		                text: data.title //图表标题
+		            },
+		            xAxis: {
+		                categories: ['第一季度', '第二季度','第三季度','第四季度']   //指定x轴分组
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'somthing'  //Y轴分组
+		                }
+		            },
+		            
+		            //数据
+		             series: [{                                //指定数据列
+		                name: data.result[0].city,                         //数据列名
+		                data: data.result[0].ave_salary     //数据
+		            }, {
+		                name: data.result[1].city,
+		                data: data.result[1].ave_salary
+		            }, {
+		                name: data.result[2].city,
+		                data: data.result[2].ave_salary
+		            }]
+		        });
+		 	}
+ 		})
+
+
+        
+    });
+	</script>
+</body>
+</html>

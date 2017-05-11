@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin:0;padding:0;}
+			body{
+				width:100%;
+				height:100%;
+				background:url(images/2.jpg);
+				background-size:cover;
+				background-position:center;
+			}
+			section{
+				width:1000px;
+				height:1000px;
+				margin:0 auto;
+				position:relative;
+			}
+			.div1{
+				width:768px;
+				height:768px;
+				background:url(images/fsw.png);
+				margin:0 auto;
+				animation:name 10s linear infinite;
+				position:relative;
+				z-index:1;
+			}
+			.div2{
+				width:247px;
+				height:505px;
+				background:url(images/bracketsmall.png);
+				position:absolute;
+				bottom:130px;
+				left:375px;
+				z-index:-1;
+			}
+			.div3{
+				width:358px;
+				height:529px;
+				background:url(images/bracket.png);
+				position:absolute;
+				bottom:90px;
+				left:318px;
+				z-index:2;
+			}
+			ul li{
+				width:130px;
+				height:170px;
+				list-style:none;
+				transform-origin:50% 0%;
+				animation:name2 10s linear infinite;
+				
+			}
+			ul li:nth-child(1){
+				background:url(images/boy.png);
+				position:absolute;
+				top:140px;
+				left:87px;
+			}
+			ul li:nth-child(2){
+				background:url(images/dog.png);
+				position:absolute;
+				top:333px;
+				left:-5px;
+			}
+			ul li:nth-child(3){
+				background:url(images/mudog.png);
+				position:absolute;
+				top:594px;
+				left:76px;
+			}
+			ul li:nth-child(4){
+				background:url(images/girl.png);
+				position:absolute;
+				top:709px;
+				left:324px;
+			}
+			ul li:nth-child(5){
+				background:url(images/girls.png);
+				position:absolute;
+				top:36px;
+				left:303px;
+			}
+			ul li:nth-child(6){
+				background:url(images/shamegirl.png);
+				position:absolute;
+				top:130px;
+				left:558px;
+			}
+			ul li:nth-child(7){
+				background:url(images/hairboy.png);
+				position:absolute;
+				top:355px;
+				left:656px;
+			}
+			ul li:nth-child(8){
+				background:url(images/mimi.png);
+				position:absolute;
+				top:608px;
+				left:559px;
+			}
+			body:hover .div1{
+				transform:rotate(360deg);
+			}
+			body:hover li{
+				transform:rotate(-360deg);
+			}
+			@keyframes name{
+				from{transform:rotate(0deg)}
+				to{transform:rotate(360deg)}
+			}
+			@keyframes name2{
+				from{transform:rotate(0deg)}
+				to{transform:rotate(-360deg)}
+			}
+			.div4{
+			width:577px;
+			height:257px;
+			background:url(images/big-title.png);
+			position:absolute;
+			top:270px;
+			left:220px;
+			z-index:3;
+			}
+			.div5{
+			width:413px;
+			height:139px;
+			background:url(images/title.png);
+			position:absolute;
+			top:470px;
+			left:300px;
+			z-index:3;
+			}
+			.div6{
+			width:48px;
+			height:64px;
+			background:url(images/arrow.png);
+			position:absolute;
+			top:570px;
+			left:470px;
+			z-index:3;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div class="div1">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="div2">
+				
+			</div>
+			<div class="div3">
+				
+			</div>
+			<div class="div4">
+				
+			</div>
+			<div class="div5">
+				
+			</div>
+			<div class="div6">
+				
+			</div>
+		</section>
+		
+	</body>
+</html>

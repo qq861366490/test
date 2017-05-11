@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<div ui-view></div>
+		
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp" , ["ui.router"]);
+			
+			
+			app.config(["$stateProvider" , "$urlRouterProvider" , function($stateProvider , $urlRouterProvider){
+				$stateProvider
+					.state("home" , {
+						url : "/home",
+						templateUrl : "./indexModule.html",
+						controller : "home"
+					})
+					.state("list" , {
+						url : "/list",
+						templateUrl : "./listModule.html",
+						controller : "list"
+					})
+			}]);
+			
+			app.controller("main" , ["$scope" , function($scope){
+				console.log("main控制器内的代码被执行了!");
+			}]);
+			
+			app.controller("home" , ["$scope" , function($scope){
+				console.log("home控制器内的代码被执行了!");
+				
+			}]);
+			
+			app.controller("list" , ["$scope" , function($scope){
+				console.log("list控制器内的代码被执行了!");
+				
+			}]);
+			
+		</script>
+	</body>
+</html>

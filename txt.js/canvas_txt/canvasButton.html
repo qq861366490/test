@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,html {
+				margin: 0;
+				padding:0;
+			}
+			canvas{
+				display: block;
+				border: 1px dashed #ccc;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can" width="500" height="500"></canvas>
+		<script>
+			var can = document.getElementById("can").getContext('2d');
+			
+			var lg = can.createLinearGradient(100,200,100,250);
+			lg.addColorStop(0,"#cceaf9");
+			lg.addColorStop(0.5,"#54bceb");
+			lg.addColorStop(0.5,"#0c9fe3");
+			lg.addColorStop(1,"#18fdfe");
+			
+			can.fillStyle = lg;
+			can.shadowBlur = 6;
+			can.shadowColor = "rgba(0,0,0,0.45)";
+			can.shadowOffsetX = 2;
+			can.shadowOffsetY = 2;
+			can.fillRect(100,200,150,50);
+//			can.beginPath();
+			
+			can.fillStyle = "#fff";
+			can.shadowBlur = null;
+			can.shadowOffsetX = 0;
+			can.shadowOffsetY = 0;
+			can.font = "24px/50px microsoft yahei";
+			can.textAlign = "center";
+			can.fillText("按钮",175,232);
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户管理系统 - 用户注册</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<h1 class="title">用户列表</h1>
+		<div class="container" style="width: 500px;">
+
+
+			<form class="form-horizontal" action="http://192.168.55.44/PC-Project-Admin/register.php" method="post">
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">
+				    	<span class="glyphicon glyphicon-user"></span>
+				    </label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" minlength="6" maxlength="16" required placeholder="请输入用户名" name="account">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">
+				    	<span class="glyphicon glyphicon-lock"></span>
+				    </label>
+				    <div class="col-sm-10">
+				      <input type="password" minlength="6" maxlength="16" required class="form-control" placeholder="请输入密码" name="password">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">
+				    	<span class="glyphicon glyphicon-earphone"></span>
+				    </label>
+				    <div class="col-sm-10">
+				      <input type="text" minlength="11" maxlength="11" required class="form-control" placeholder="请输入手机号" name="phone">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button type="submit" class="btn btn-default">注册</button>
+				    </div>
+				</div>
+			</form>
+		</div>
+
+		<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			$(function(){
+				var rules = {
+					account: /^[a-zA-Z_]\w{5,15}$/,
+					phone: /^1[3578]\d{9}$/
+				};
+				//focus
+				$('form input[name="account"]').blur(function(){
+					var 
+						_this = $(this),
+						account = _this.val();
+
+					if( !rules.account.test(account) ){
+						_this.addClass('error');
+						return;
+					}
+					_this.removeClass('error');
+
+					$.ajax({
+						url: 'http://192.168.55.44/PC-Project-Admin/checkAccount.php',
+						data: {
+							account: account
+						},
+						dataType: 'json',
+						success: function(data){
+							if(data.status){
+								_this.after('<span style="color: red">用户名已存在</span>');
+							}else{
+								_this.next().remove();
+							}
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

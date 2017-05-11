@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				background-image:url(img/bg.jpg);
+				background-size:cover;
+				}
+				
+			
+			nav{
+				width:450px;
+				height:135px;
+				margin:100px auto;
+				position:relative;
+			}	
+			ul li{
+				list-style:none;
+				float:left;
+				width:75px;
+				height:135px;
+			}
+			ul li a{
+				float:left;
+				width:75px;
+				margin-top:100px;
+				text-align:center;
+				text-decoration:none;
+				color:#fff;
+			}
+			ul li:hover a{
+				color:#C39449;
+			}
+			ul li:nth-child(1){
+				background:url(img/rocket-large.png) no-repeat center;
+			}
+			ul li:nth-child(2){
+				background:url(img/burger-large.png) no-repeat center;
+			}
+			ul li:nth-child(3){
+				background:url(img/comment-large.png) no-repeat center;
+			}
+			ul li:nth-child(4){
+				background:url(img/earth-large.png) no-repeat center;
+			}
+			ul li:nth-child(5){
+				background:url(img/sport-large.png) no-repeat center;
+			}
+			ul li:nth-child(6){
+				background:url(img/wine-large.png) no-repeat center;
+			}
+			.active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				transition:all 400ms;
+			}
+			.top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:27px;
+				z-index:1;
+				transition:all 400ms;
+			}
+			.bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:27px;
+				z-index:1;
+				transition:all 400ms;
+			}
+			ul li:nth-child(1):hover~.active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:0;
+			}
+			ul li:nth-child(2):hover~ .active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:75px;
+			}
+			ul li:nth-child(3):hover~ .active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:150px;
+			}
+			ul li:nth-child(4):hover~ .active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:225px;
+			}
+			ul li:nth-child(5):hover~ .active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:300px;
+			}
+			ul li:nth-child(6):hover~ .active{
+				width:75px;
+				height:155px;
+				background:#C39449;
+				position:absolute;
+				top:-10px;
+				z-index:-1;
+				left:375px;
+			}
+			ul li:nth-child(1):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:27px;
+				z-index:1;
+			}
+			ul li:nth-child(1):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:27px;
+				z-index:1;
+			}
+			ul li:nth-child(2):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:102px;
+				z-index:1;
+			}
+			ul li:nth-child(2):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:102px;
+				z-index:1;
+			}
+			ul li:nth-child(3):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:177px;
+				z-index:1;
+			}
+			ul li:nth-child(3):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:177px;
+				z-index:1;
+			}
+			ul li:nth-child(4):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:252px;
+				z-index:1;
+			}
+			ul li:nth-child(4):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:252px;
+				z-index:1;
+			}
+			ul li:nth-child(5):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:327px;
+				z-index:1;
+			}
+			ul li:nth-child(5):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:327px;
+				z-index:1;
+			}
+			ul li:nth-child(6):hover~ .top{
+				border:10px solid #C39449;
+				border-color:#C39449 transparent transparent transparent;
+				position:absolute;
+				left:402px;
+				z-index:1;
+			}
+			ul li:nth-child(6):hover~ .bottom{
+				border:10px solid #C39449;
+				border-color:transparent transparent #C39449 transparent;
+				position:absolute;
+				bottom:0px;
+				left:402px;
+				z-index:1;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">首页</a></li>
+				<div class="active">
+				</div>
+				<div class="top"></div>
+				<div class="bottom"></div>
+			</ul>
+		</nav>
+	</body>
+</html>

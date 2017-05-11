@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			section{
+				width:500px;
+				background:red;
+				padding:10px;
+				margin:0 auto;
+				
+			}
+			h2{
+				height:40px;
+				background:blue;
+				border-radius:10px;
+				line-height:40px;
+				position:relative;
+			}
+			h2 a:after{
+				content:"";
+				border:8px solid #fff;
+				border-color:transparent transparent transparent #fff;
+				float:right;
+				position:absolute;
+				top:10px;
+				right:10px;
+				
+			}
+			h2:hover{
+				background:pink;
+			
+			}
+			h2 a{
+				width:500px;
+				height:40px;
+				display:block;
+				color:#fff;
+				text-decoration:none;
+				
+			}
+			p{
+				height:0px;
+				overflow:hidden;
+				transition:all 1s;
+			}
+			:target a:after{
+				border-color:#fff transparent transparent transparent;
+			}
+			:target p{
+				background:yellow;
+				height:100px
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div id="p1">
+				<h2><a href="#p1">第一个</a></h2>
+				<p >内容1</p>
+			</div>
+			<div id="p2">
+				<h2><a href="#p2">第二个</a></h2>
+				<p >内容2</p>
+			</div>
+			<div id="p3">
+				<h2><a href="#p3">第三个</a></h2>
+				<p >内容3</p>
+			</div>
+		</section>
+		
+	</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body,div,span,ul,li,h3,h4,p {
+				margin: 0;
+				padding: 0;
+			}
+			.clearFix:after {
+				display: block;
+				clear: both;
+				content:"";
+				visibility: hidden;
+				height: 0;
+			}
+			.container {
+				width: 600px;
+				margin: 0 auto;
+				
+			}
+			
+			ul {
+				width: 600px;
+				height: 150px;
+				list-style: none;
+			}
+			ul li {
+				float: left;
+				width: 80px;
+				line-height: 30px;
+				text-align: center;
+				background-color: #ccc;
+				color: #000;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			.item {
+				background-color: #c33;
+				color: #fff;
+				
+			}
+			.content {
+				width: 600px;
+				height: 440px;
+				padding-left: 100px;
+				
+			}
+			.content p {
+				font-weight: 700;
+			}
+			
+			.content img {
+				display: block;
+				width: 300px;
+				height: 300px;
+			}
+			
+			.content h3 {
+				width: 200px;
+				line-height: 30px;
+				background-color: #c33;
+				color: #fff;
+				cursor: pointer;
+				text-align: center;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container clearFix">
+			<ul>
+				<li >张三</li>
+				<li >李四</li>
+				<li >王五</li>
+				<li >赵六</li>
+				<li >钱七</li>
+				<li >孙八</li>
+				<li >张三</li>
+				<li >李四</li>
+				<li >王五</li>
+				<li >赵六</li>
+				<li >钱七</li>
+				<li >孙八</li>
+				<li >张三</li>
+				<li >李四</li>
+				<li >王五</li>
+				<li >赵六</li>
+				<li >钱七</li>
+				<li >孙八</li>
+			</ul>
+			
+			<div class="content">
+				
+				<p class="uname">姓名: </p>
+				<span>头像：</span><img src="" class="headImg">
+				<h4 class="motto">座右铭：</h4>
+				<h3 class="btn">点名开始</h3>
+			</div>
+		</div>
+		
+		
+		<script src="js/$.js"></script>
+		<script>
+			"use strict";
+			window.onload = function(){
+				var uname = $('.uname')[0],
+					headImag = $('.headImg')[0],
+					motto = $('.motto')[0],
+					btn = $('.btn')[0],
+					lis = $('li'),
+					timer = null;
+				var infor = [
+						{
+							name:'张三',
+							headImg: 'imgs/u2.jpg',
+							motto:'生活没有如果1'
+						},
+						{
+							name:'李四',
+							headImg: 'imgs/u3.jpg',
+							motto:'生活没有如果2'
+						},
+						{
+							name:'王五',
+							headImg: 'imgs/u4.jpg',
+							motto:'生活没有如果3'
+						},
+						{
+							name:'赵六',
+							headImg: 'imgs/u5.jpg',
+							motto:'生活没有如果4'
+						},
+						{
+							name:'钱七',
+							headImg: 'imgs/u6.jpg',
+							motto:'生活没有如果5'
+						},
+						{
+							name:'孙八',
+							headImg: 'imgs/u7.jpg',
+							motto:'生活没有如果6'
+						},
+						{
+							name:'张三',
+							headImg: 'imgs/u2.jpg',
+							motto:'生活没有如果7'
+						},
+						{
+							name:'李四',
+							headImg: 'imgs/u3.jpg',
+							motto:'生活没有如果8'
+						},
+						{
+							name:'王五',
+							headImg: 'imgs/u4.jpg',
+							motto:'生活没有如果9'
+						},
+						{
+							name:'赵六',
+							headImg: 'imgs/u5.jpg',
+							motto:'生活没有如果10'
+						},
+						{
+							name:'钱七',
+							headImg: 'imgs/u6.jpg',
+							motto:'生活没有如果11'
+						},
+						{
+							name:'孙八',
+							headImg: 'imgs/u7.jpg',
+							motto:'生活没有如果12'
+						},
+						{
+							name:'张三',
+							headImg: 'imgs/u2.jpg',
+							motto:'生活没有如果13'
+						},
+						{
+							name:'李四',
+							headImg: 'imgs/u3.jpg',
+							motto:'生活没有如果14'
+						},
+						{
+							name:'王五',
+							headImg: 'imgs/u4.jpg',
+							motto:'生活没有如果15'
+						},
+						{
+							name:'赵六',
+							headImg: 'imgs/u5.jpg',
+							motto:'生活没有如果16'
+						},
+						{
+							name:'钱七',
+							headImg: 'imgs/u6.jpg',
+							motto:'生活没有如果17'
+						},
+						{
+							name:'孙八',
+							headImg: 'imgs/u7.jpg',
+							motto:'生活没有如果18'
+						}
+					];
+				btn.addEventListener('click',function(){
+					clearInterval(timer);
+					
+					var date1 = new Date(),
+						oldMi = date1.getSeconds();
+						
+					timer = setInterval(function(){
+						for(var j=0,len=lis.length; j<len; j++){
+							lis[j].className = '';
+						}
+						var i = parseInt(Math.random()*18),
+							uname1 = infor[i].name,
+							headImg1 = infor[i].headImg,
+							motto1 = infor[i].motto;
+						lis[i].className +='item';
+						uname.innerHTML = '姓名:&nbsp;&nbsp;&nbsp;&nbsp;'+uname1;
+						headImag.src = headImg1;
+						motto.innerHTML = '座右铭:&nbsp;&nbsp;'+motto1;
+						var date2 = new Date(),
+							nowMi = date2.getSeconds();
+						if(nowMi-oldMi == 3){
+							clearInterval(timer);
+						}
+						
+					},25)
+					
+				},false)
+					
+				
+			}
+		</script>
+	</body>
+</html>

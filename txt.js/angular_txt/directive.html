@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<div ng-bind=""></div> <!--Attr-->
+		
+		<ng-bind></ng-bind> <!--Element-->
+		
+		<!--<div class="zhu-say:'abc' "> </div>--> <!--Class-->
+		
+		<!--directive:zhu-say -->   <!--M:注释-->
+		
+		<div zhu-aay="abc" id="num" class="active" ng-click="say()"></div>
+		
+		
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			var app = angular.module("myApp" , []);
+			
+			app.directive("zhuAay" , function(){
+				return {
+					restrict : "AECM",//用来声明指令的使用形式
+					templateUrl : "./template.html",//注入到指令所在标签的模板内容  可直接使用template
+					replace : true,//设定模板内容是否替换指令所在的标签
+					controller : "dirCon",//值为字符串时,为声明指令所在范围内的控制器,值为function()定义并初始化一个匿名控制器
+					link : function(a , e , a ){
+//						scope: 指令标签所在控制器作用域范围内的$scope 对象
+//						elements : 包含该指令的所有元素dom数组
+//						attrs : 该指令所在的元素所有属性值集合{}
+						console.log(attrs.zhuAay);
+					}
+				}
+			});
+			
+			app.controller("main" , function(){});
+			
+			app.controller("dirCon" , function($scope){
+				
+				$scope.name = "zhuiszhu";
+			});
+			
+		</script>
+	</body>
+</html>

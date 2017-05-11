@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width:100px;
+			height:100px;
+			position:absolute;
+			left:0;
+			top:0;
+			background-color:#cad;
+		}
+	</style>
+	
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var div = document.getElementsByTagName('div')[0];
+			var disX=0;
+			var disY=0;
+			div.onmousedown=function(e){ 
+				e = e || window.event;
+				disX=e.clientX-div.offsetLeft;
+				disY=e.clientY-div.offsetTop;
+				
+				document.onmousemove=function(e){
+					e = e || window.event;
+					e.preventDefault ? e.preventDefault() : e.returnValue = false;
+					var l=e.clientX-disX;
+					var	t=e.clientY-disY;
+					var	wid=document.documentElement.clientWidth;
+					var	hei=document.documentElement.clientHeight;
+					if(l<0){
+						l=0;
+					}else if (l>wid-div.offsetWidth){
+						l=wid-div.offsetWidth;
+					}
+					if(t<0){
+						t=0;
+					}else if(t>hei-div.offsetHeight){
+						t=hei-div.offsetHeight;
+					}
+					div.style.left=l+'px';
+					div.style.top =t+'px';
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+				}
+			}
+			
+		}
+	</script>
+</body>
+</html>

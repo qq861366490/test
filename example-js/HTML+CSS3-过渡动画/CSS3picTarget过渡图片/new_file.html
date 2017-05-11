@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding:0;
+				margin:0;
+			}
+			html{height:100%;}
+			body{
+				height:100%;
+			}
+			a{
+				color:#fff;
+				text-decoration:none;
+			}
+			section{
+				width:990px;
+				height:200px;
+				margin-top:400px;
+				padding-left:20px;
+				position:absolute;
+				z-index:100;
+				top:80%;
+				left:50%;
+				margin-left:-500px;
+				margin-top:-100px;
+			}
+			ul{
+				list-style:none;
+			}
+			li{
+				width:150px;
+				height:150px;
+				border:1px solid #fff;
+				float:left;
+				margin:0 20px;
+				background:#2AC180;
+				position:relative;
+			}
+			
+			li p a{
+				display:block;
+				width:150px;
+				height:70px;
+				padding-top:80px;
+				text-align:center;
+			}
+		
+			
+			li:nth-child(1) h1 a{
+				display:block;
+				width:100px;
+				height:100px;
+				background: url(img/sbg1.jpg) no-repeat center;
+				border:4px solid #fff;
+				border-radius:50%;
+				position:absolute;
+				top:-60px;
+				left:25px;
+				z-index:1;
+			}
+			li:nth-child(2) h1 a{
+				display:block;
+				width:100px;
+				height:100px;
+				background:url(img/sbg2.jpg) no-repeat center;
+				border:4px solid #fff;
+				border-radius:50%;
+				position:absolute;
+				top:-60px;
+				left:25px;
+				z-index:1;
+			}
+			li:nth-child(3) h1 a{
+				display:block;
+				width:100px;
+				height:100px;
+				background: url(img/sbg3.jpg) no-repeat center;
+				border:4px solid #fff;
+				border-radius:50%;
+				position:absolute;
+				top:-60px;
+				left:25px;
+				z-index:1;
+			}
+			li:nth-child(4) h1 a{
+				display:block;
+				width:100px;
+				height:100px;
+				background:url(img/sbg4.jpg) no-repeat center;
+				border:4px solid #fff;
+				border-radius:50%;
+				position:absolute;
+				top:-60px;
+				left:25px;
+				z-index:1;
+			}
+			li:nth-child(5) h1 a{
+				display:block;
+				width:100px;
+				height:100px;
+				background:url(img/sbg5.jpg) no-repeat center;
+				border:4px solid #fff;
+				border-radius:50%;
+				position:absolute;
+				top:-60px;
+				left:25px;
+				z-index:1;
+			}
+			ul li h2{
+				width:100px;
+				height:100px;
+				border-radius:50%;
+				background:#000;
+				position:absolute;
+				top:-56px;
+				left:29px;
+				z-index:1;
+				opacity:0.4;
+			}
+			ul li:hover h2{
+				opacity:0;
+			}
+			img{
+				
+			}
+			#bg1{
+				display:block;
+				width:100%;
+				height:100%;
+				position:fixed;
+				transition:all 1s;
+				z-index:-1;
+				left:-100%;
+				}
+			#bg1:target {
+				z-index:1;
+				/*animation:bg1 2s linear 1 forwards;*/
+				left:0;
+			}
+			/*@keyframes bg1{
+				0%{left:-90%;}
+				%{left:0;}
+			}*/
+			#bg2{
+				display:block;
+				width:100%;
+				height:100%;
+				position:fixed;
+				transition:all 1s;
+				bottom:-1900px;
+				z-index:-1;
+				}
+			#bg2:target{
+				/*animation:bg2 2s linear 1 forwards;*/
+				z-index:1;
+				bottom:0;
+			}
+			/*@keyframes bg2{
+				from{bottom:-1900px;}
+				to{bottom:0px;}
+			}*/
+			#bg3{
+				display:block;
+				width:100%;
+				height:100%;
+				position:fixed;
+				transition:all 1s;
+				transform:scale(0);
+				z-index:-1;
+				}
+			#bg3:target{
+				/*animation:bg3 2s linear 1 forwards;*/
+				z-index:1;
+				transform:scale(1);
+			}
+			/*@keyframes bg3{
+				from{transform:scale(0);;}
+				to{transform:scale(1);}*/
+			#bg4{
+				display:block;
+				width:100%;
+				height:100%;
+				position:fixed;
+				transition:all 1s;
+				transform:scale(1.2);
+				z-index:-2;
+				}
+			#bg4:target{
+				transform:scale(1);
+				z-index:1;
+				display:block;
+			}
+			#bg5{
+				display:block;
+				width:100%;
+				height:100%;
+				position:fixed;
+				transition:all 1s;
+				transform:rotate(0deg) scale(0) ;
+				z-index:-1;
+				}
+			#bg5:target{
+				transform:rotate(360deg) scale(1) ;
+				z-index:1;
+				}
+		</style>
+	</head>
+	<body>
+		<section>
+			<ul>
+				<li>
+					<h1><a href="#bg1"></a></h1>
+					<a href="#bg1"><h2></h2></a>
+					<p><a href="#bg1">dfgdfg dssdfs dfsdf dsffg fdgfdsg</a></p>
+				</li>
+				<li>
+					<h1><a href="#bg2"></a></h1>
+					<a href="#bg2"><h2></h2></a>
+					<p><a href="#bg2">dfgd fgds dfdsfs dfs sfgfdgf dsg</a></p>
+				</li> 
+				<li>
+					<h1><a href="#bg3"></a></h1>
+					<a href="#bg3"><h2></h2></a>
+					<p><a href="#bg3">dfg fgds sfsd fdsf fgf  dgfdsg</a></p>
+				</li>
+				<li>
+					<h1><a href="#bg4"></a></h1>
+					<a href="#bg4"><h2></h2></a>
+					<p><a href="#bg4">dfgd fg dssdfs dfsd fg fdgfdsg</a></p>
+				</li>
+				<li>
+					<h1><a href="#bg5"></a></h1>
+					<a href="#bg5"><h2></h2></a>
+					<p><a href="#bg5">dfgd fg dssdfs dfsd fg fdgfdsg</a></p>
+				</li>
+			</ul>
+		</section>
+		<img src="img/bg1.jpg" id="bg1"/>
+		<img src="img/bg2.jpg" id="bg2"/>	
+		<img src="img/bg3.jpg" id="bg3"/>
+		<img src="img/bg4.jpg" id="bg4"/>
+		<img src="img/bg5.jpg" id="bg5"/>
+	</body>
+</html>

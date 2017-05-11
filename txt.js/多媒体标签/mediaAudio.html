@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<style type="text/css">
+			.play-color{
+				height: 5px;
+				background:#00f1ff;
+			}
+		</style>
+		<div class="play-bar" style="width: 150px;height: 5px;background: rgba(0,0,0,0.5);">
+			<div id="play-color" class="play-color"></div>
+		</div>
+		
+		<!--多媒体api-->
+		
+		<!--方法-->
+		<!--.play() 播放-->
+		<!--.pause() 暂停-->
+		<!--.load() 重新加载资源-->
+		
+		
+		<!--属性-->
+		<!--duration:获取播放时长-->
+		<!--(注意:duration属性值必须等文件加载完成才能获取到,否则值为NaN或者 infinite (无限))-->
+		<!--paused :获取歌曲是否暂停-->
+		<!--volume: 获取/设置播放音量-->
+		<!--src: 获取当前资源的src路径-->
+		<!--currentTime:获取当前播放时长-->
+		<!--loop:获取/设置当前歌曲是否循环播放-->
+		<!--playbackRate:获取/设置当前歌曲的播放速度 默认值为1  大于1为快速  小于1为慢速-->
+		
+		
+		<audio src="MP3/mizuki - aLIEz.mp3" id="ado"></audio>
+		
+		<p id="dan"></p>
+		<a href="javascript:playAdo();">播放</a>
+		<a href="javascript:ado.load();">重播</a>
+		<a href="javascript:pause();">暂停</a>
+		<a href="javascript:addVol();">音量变大</a>
+		<a href="javascript:xiaoVol();">音量变小</a>
+		<a href="javascript:pOp();">播放/暂停</a>
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			var ado = document.getElementById("ado");
+			
+			console.log("播放速度为:"+ado.playbackRate);
+			
+			ado.playbackRate = 0.5;
+			getDuration(ado,function(times){
+				console.log(times);
+				
+//				console.log("当前音量为:"+ado.volume);
+
+				setInterval(function(){
+					console.log();
+					
+					var bfb = ado.currentTime/times;
+					
+					$("#play-color").attr("style","width: "+bfb*100+"%;");
+				},500);
+				
+			})
+			
+			function addVol(){
+				if(ado.volume <= 0.9){
+					ado.volume += 0.1;
+				}else{
+					ado.volume = 1;
+				}
+			}
+			
+			function xiaoVol(){
+				if(ado.volume > 0){
+					ado.volume -= 0.1;
+				}else{
+					ado.volume = 0;
+				}
+			}
+			
+			function getDuration(ado,callback){
+				var times = ado.duration;
+				
+				if(isNaN(times)){//如果没有获取到数据  
+					setTimeout(function(){
+						
+						getDuration(ado,callback);
+					
+					},1);
+				}else{
+					callback(times);
+				}
+			}
+			
+			
+			function playAdo(){
+				ado.play();
+			}
+			
+			function pause(){
+				ado.pause();
+			}
+			
+			function pOp(){
+				if(ado.paused){//暂停
+					ado.play();
+				}else{
+					ado.pause();
+				}
+			}
+		</script>
+	</body>
+</html>

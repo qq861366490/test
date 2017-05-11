@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html,body,div,ul,li {
+			margin: 0;
+			padding: 0;
+		}
+		.imgs img{
+			width: 200px;
+			height: 200px;
+		}
+		.container ul {
+			list-style: none;
+		}
+		.container ul li {
+			float: left;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+		.container ul li:hover {
+			border: 1px solid red;
+		}
+		.container ul li.active {
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="imgs">
+		</div>
+		<ul>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript">
+	'use strict';
+	$(function(){
+		var imgs = $('.container .imgs'),
+			ul = $('.container ul');
+		$.ajax({
+			type: 'get',
+			url: 'http://192.168.55.44/lebo/php/getShow.php',
+			data: {
+				page_id: 1,
+				num: 4
+			},
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			success: function(data){
+				pageNum(data.page_total);
+				imgShow(data.result)
+			}
+		});
+		
+		function pageNum(num){
+			var str2 = '';
+			for(var i=1; i<=num; i++){
+				str2 += '<li class="item">'+i+'</li>';
+			}
+			ul.html(str2).find('li:first').addClass('active');	
+		}
+		function imgShow(data){
+			var str1 = '';
+			for(var j=0,len=data.length; j<len; j++){
+				str1 += '<img src="'+data[j]['pic-url']+'">'
+			}	
+			imgs.html(str1);
+		}
+		ul.on('click','.item',function(){
+			var index = $(this).index();
+			$(this).addClass('active').siblings().removeClass('active');
+			$.ajax({
+				type: 'get',
+				url: 'http://192.168.55.44/lebo/php/getShow.php',
+				data: {
+					page_id: index+1,
+					num: 4
+				},
+				dataType: 'jsonp',
+				jsonp: 'callback',
+				success: function(data){
+					imgShow(data.result)
+				}
+			});
+		})
+		
+	})
+
+
+	</script>
+</body>
+</html>

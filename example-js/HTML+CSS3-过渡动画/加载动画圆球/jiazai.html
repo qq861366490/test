@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>循环递进加载小球</title>
+		<style>
+			body{
+				width:100%;
+				background:#000;
+			}
+			*{
+				padding:0;margin:0;
+			}
+			ul{
+				width:400px;
+				height:80px;
+				margin:200px auto;
+				list-style:none;
+				position:relative;
+			}
+			ul li{
+				width:30px;
+				height:30px;
+				border-radius:50%;
+				background:#fff;
+				position:absolute;
+			}
+			ul li:first-child{
+				width:32px;
+				height:32px;
+				animation:op2 0.4s  infinite;
+			}
+			ul li:nth-child(2){
+				animation:op 400ms  infinite;
+				left:40px;
+			}
+			ul li:nth-child(3){
+				animation:op 400ms  infinite;
+				left:80px;
+			}
+			ul li:nth-child(4){
+				animation:op 400ms  infinite;
+				left:120px;
+			}
+			ul li:nth-child(5){
+				animation:op 400ms  infinite;
+				left:160px;
+			}
+			@keyframes op{
+				from{transform:translateX(0px)}
+				to{transform:translateX(-40px)}
+			}
+			@keyframes op2{
+				from{transform:rotateX(40deg);top:-35px;left:0;}
+				to{transform:rotateX(40deg);top:-35px;left:160px;}
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

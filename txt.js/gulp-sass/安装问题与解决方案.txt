@@ -1,0 +1,4 @@
+问题：Could not find a valid gem "sass" ...
+
+
+解决：http://stackoverflow.com/questions/16136006/install-sass-using-gem-on-windows-8

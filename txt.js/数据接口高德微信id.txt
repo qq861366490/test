@@ -1,0 +1,79 @@
+http://datainfo.duapp.com/shopdata/datainfo.html
+http://ons.me/tools/dropload/json.php?page='+page+'&size='+size
+
+http://es6.ruanyifeng.com/#docs/destructuring
+
+IScroll5中文API整理,用法与参考
+http://www.cnblogs.com/leolai/articles/4204345.html
+
+.ttf转换成base64格式网址
+https://transfonter.org/
+
+移动端上拉加载下拉刷新插件
+http://www.jq22.com/jquery-info6960
+
+var swiper = new Swiper(".swiper-container", {
+				autoplay: 3000,
+				loop: true,
+				pagination: ".swiper-pagination",
+		        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+		        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+		        autoplayDisableOnInteraction:false//用户操作swiper之后是否禁止autoplay
+			});
+
+setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+
+微信公众号开发
+AppID: wx12bbbffe4df32e3f
+AppSecret: 83763f0dc21b56a4b33759b2e25f2c09
+小程序id:wx79cd5e493162292a
+
+css渐变网址http://www.colorzilla.com/gradient-editor/
+
+
+
+高德地图key 1f6a68e16be33196b63eb7f95e6b4412
+微信公众号开发
+AppID: wx12bbbffe4df32e3f
+AppSecret: 83763f0dc21b56a4b33759b2e25f2c09
+
+
+ctrl+alt+i调整像素比例大小
+
+ctrl+左键选中图层  ctrl+shift+左键选中多个图层 
+ctrl+g划分图层到一个分组
+
+ctrl+n新建文档图层
+
+将选中图层拖到新文档步骤:
+1.ctrl+左键选中图层,
+2.左键不放,拖到新文档标签,
+3.接着拖到新文档的画布空白地方,左键松开
+
+ctrl+e将选中的多个图层合并成一个图层(最好在新的文档里操作,即在ctrl+n之后操作)
+
+按住ctrl鼠标左键点击右边的图层列表的左边的小正方形预览图,可创建图层所在选区.
+将画布裁切成图层选区最小区域,按c,两次回车键
+
+tab/f  切换工作区域显示面积
+
+ctrl+;/ctrl+h显示隐藏辅助线
+ctrl+j 将选区内的图像复制出来,并创建新的图层粘贴进去
+没有选区的状态下,直接复制成新的图层;
+
+jquery图片懒加载代码
+$(function(){
+	var load_box = $(".load_box");
+	var _load_box_top = load_box.offset().top;
+	var _win_height = $(window).height();
+	$(window).scroll(function(){
+		var _scrollTop = $(window).scrollTop();
+		if(_scrollTop+_win_height >= _load_box_top){
+			$(".icon img").each(function(){
+				var _load_src = $(this).attr("loadSrc");
+				$(this).attr("src",_load_src);
+			});
+		}
+	});
+});
+

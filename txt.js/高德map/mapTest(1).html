@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/ba.css"/>
+		<style type="text/css">
+			.map{
+				width: 500px;
+				height: 500px;
+				margin: 30px auto;
+				box-shadow: 1px 2px 5px rgba(0,0,0,0.65);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map" class="map"></div>
+		<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=491d3bcc5b14f5535f30d066b4e26d9a"></script>
+		 <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+		<script type="text/javascript">
+			var gtn = null;
+			
+			var mapObj = new AMap.Map("map",{
+				resizeEnable: true,
+			    zoom:11,
+			    center: [116.397428, 39.90923]
+			});
+			
+			var marker = new AMap.Marker({
+				map : mapObj,
+				title : "家",
+				icon : "./img/bmw3.png",
+				offset : new AMap.Pixel(-16,-52)
+			});
+			
+			mapObj.plugin("AMap.Geolocation" , function(){
+				gtn = new AMap.Geolocation({
+					enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        			timeout: 10000,
+        			showMarker: true,
+        			showCircle: true,
+        			panToLocation: true,
+        			zoomToAccuracy:true
+				});
+				
+				mapObj.addControl(gtn);
+				
+				AMap.event.addListener(gtn, 'complete', function(dataObj){
+					console.log("定位成功");
+					console.log(dataObj);
+				});//返回定位信息
+    AMap.event.addListener(gtn, 'error', function(err){
+					console.log("定位失败");
+					console.log(err);
+    	
+    });
+			});
+		</script>
+	</body>
+</html>

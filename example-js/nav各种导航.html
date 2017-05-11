@@ -1,0 +1,329 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>导航栏设置</title>
+<style>
+	*{padding:0;margin:0;}
+	body{width:100%;height:1300px;}
+	/*************鼠标移动色块显示背景图片*****************/
+	.nav{width:100%;height:43px;background: url(img/nav1.jpg) repeat-x bottom;}
+	.nav05{width:450px;height:43px;margin:0 auto;}
+	.nav ul{padding-left:10px;}
+	.nav li{float:left;list-style-type:none;line-height:43px;}
+	.nav a{text-decoration:none;display:block;height:43px;padding:0 18px;}
+	.nav a:hover{background:url(img/nav.jpg) repeat-x;}
+	.nav ul .left a{background:url(img/nav.jpg) repeat-x;}
+	
+
+	/************鼠标移动添加下边框色块（5px）******************/
+	/*  鼠标移动a:hover的白色背景色不会盖住下边的div的上边框    */
+	.nav0{width:800px;height:136px;margin:0 auto;background:url(img/nav0bg.jpg) repeat-x;padding-top:41px;margin-top:10px;}
+	.nav0 ul li{list-style-type:none;float:left;}
+	.nav0 .navtop{width:800px;height:47px;background:url(img/nav002.jpg) repeat-x;}
+	.nav0 .navtop li a{display:block;width:124px;height:48px;line-height:48px;text-align:center;text-decoration:none;background:url(img/navline.jpg) no-repeat right center;color:#666;}
+	.nav0 .navtop li a:hover{border-bottom:5px solid #fff;color:green;font-weight:bold;}
+	.nav0 .navbottom{width:800px;height:47px;background:url(img/nav003.jpg) repeat-x;border-top:1px solid #e7e7e7;}
+	.nav0 .navtop ul .right a{background:none;}
+	
+	/*************鼠标移动色块比背景色高一部分*****************/
+	/*  a:hover里比原来a的高度高，margin-top:0;   */
+	.nav1{width:443px;height:44px;margin:50px auto 50px;}
+	
+	.nav1 li{list-style:none;float:left;}
+	.nav1 li a{text-decoration:none;line-height:38px;padding:0 20px;background:url(img/nav02.jpg) repeat-x;height:40px;margin-top:4px;display:block;}
+	.nav1 li a:hover{background:url(img/nav022.jpg) repeat-x;height:42px;margin-top:1px;;line-height:42px;border-top:1px solid #2175bd;}
+	
+	/**********鼠标移动色块添加上边框原来下边框消失**********/
+	/*  a:hover里加上边框，（+边框）高度与原来a的一样 margin-top:-1px; */
+	.nav2{width:440px;height:42px;background:pink;margin:50px auto 50px;border:1px solid black;}
+	
+	.nav2 li{list-style:none;float:left;}
+	.nav2 li a{text-decoration:none;line-height:44px;heigth:44px;padding:0 28px;display:block;}
+	.nav2 li a:hover{border-top:2px solid red;line-height:44px;background:#fff;height:42px;margin-top:-1px;}
+	
+	/***************鼠标移动色块中文变英文******************/
+	/* a标签里加span em，利用display:none;来隐藏   */
+	.nav3{height:40px;margin:50px auto 50px;border-bottom:10px solid black;}
+	.nav3 li{float:left;list-style:none;line-height:40px;}
+	.nav3 li a{text-decoration:none;width:80px;margin-right:1px;height:40px;background:pink;display:block;text-align:center;}
+	.nav3 li em{font-style:normal;}
+	.nav3 li a:hover{background:red;color:#fff;}
+	.nav3 li span{display:none;}
+	.nav3 ul li a:hover span{display:block;}
+	.nav3 ul li a:hover em{display:none;}
+	/****************A色块里加背景色+背景图片*****************/
+	.nav4{width:900px;height:40px;margin:0 auto;background:red;}
+	.nav4 li{float:left;list-style:none;}
+	.nav4 li a{text-decoration:none;line-height:40px;height:40px;padding:0 20px;display:block;}
+	.nav4 li a:hover{height:40px;background:#fff url(img/nav09.jpg) no-repeat 35px 0;color:red;}
+	/****************A色块里加四角边框*****************/
+	.nav5{width:900px;height:100px;margin:0 auto;margin-top:50px;background:;}
+	.nav5 li{float:left;list-style:none;background:;}
+	.nav5 li a{text-decoration:none;line-height:100px;height:100px;padding-left:20px;display:block;}
+	.nav5 li a span{height:100px;padding-right:20px;display:block;}
+	.nav5 li a:hover{height:100px;background:url(img/nav501.jpg) no-repeat left center;}
+	.nav5 li a:hover span{height:100px;background:url(img/nav502.jpg) no-repeat right center;}
+	
+	/****************二级菜单导航竖着显示***************/
+	/*二级UL加个宽度，display:none;  */
+	.nav6{width:900px;height:40px;margin:0 auto;margin-top:20px;}
+	.nav6 ul li{float:left;list-style:none;}
+	.nav6 ul li ul{display:none;width:100px;}
+	.nav6 ul li a{text-decoration:none;display:block;width:100px;text-align:center;line-height:40px;background:#666;}
+	
+	.nav6 ul li:hover ul{display:block;}
+	.nav6 ul li a:hover{background:#000;}
+	
+	/****************二级菜单导航横着着显示***************/
+	/*二级UL加个绝对定位，display:none; 
+		position:absolute;脱离文档流，不占据空间；
+	 */
+	.nav7{width:1000px;height:40px;margin:0 auto;margin-top:150px;}
+	.nav7 ul li{float:left;list-style:none;}
+	.nav7 ul li a{text-decoration:none;display:block;width:100px;text-align:center;line-height:40px;background:#999;}
+	.nav7 ul li ul{display:none;position:absolute;}
+	.nav7 ul li:hover ul{display:block;}
+	.nav7 a:hover{background:#000;}
+	/****************三级菜单导航***************/
+	/*二级UL加个相对定位，display:none;
+		鼠标划到一级li的时候，二级UL：display:block；三级UL：display:none;
+		鼠标划到二级li的时候，三级UL：绝对定位 ，display:block；left;margin-top;
+	     */
+	.nav8{width:1000px;height:40px;margin:0 auto;margin-top:50px;}
+	.nav8 ul li{float:left;list-style:none;}
+	.nav8 ul li a{text-decoration:none;display:block;width:100px;text-align:center;line-height:40px;background:pink;}
+	.nav8 ul li ul{display:none;width:100px;;position:relative;}
+	.nav8 ul li:hover ul li ul{display:none;}
+	.nav8 ul li:hover ul{display:block;}
+	.nav8 ul li ul li:hover ul{display:block;position:absolute;left:100px;margin-top:-40px;}
+	.nav8 a:hover{background:#000;color:#fff;}
+</style>
+</head>
+
+<body>
+		<div class="nav">
+        	<div class="nav05">
+    			<ul>
+					<li class="left"><a href="#">sample</a></li>
+					<li><a href="#">sample</a></li>
+            		<li><a href="#">sample</a></li>
+            		<li><a href="#">sample</a></li>
+            		<li><a href="#">sample</a></li>
+        		</ul>
+            </div>
+    	</div>
+    <div class="nav0">
+    	<div class="navtop">
+    		<ul>
+        		<li><a href="#">首页</a></li>
+            	<li><a href="#">首页</a></li>
+            	<li><a href="#">首页</a></li>
+            	<li><a href="#">首页</a></li>
+            	<li class="right"><a href="#">首页</a></li>
+        	</ul>
+        </div>
+        <div class="navbottom"></div>
+    </div>
+    <div class="nav1">
+    	<ul>
+        	<li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+        </ul>
+    </div>
+    <div class="nav2">
+    	<ul>
+        	<li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">首页</a></li>
+        </ul>
+    </div>
+    
+    <div class="nav3">
+    	<ul>
+        	<li><a href="#"><em>首页</em><span>home</span></a></li>
+            <li><a href="#"><em>首页</em><span>home</span></a></li>
+            <li><a href="#"><em>首页</em><span>home</span></a></li>
+            <li><a href="#"><em>首页</em><span>home</span></a></li>
+            <li><a href="#"><em>首页</em><span>home</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav4">
+    	<ul>
+        	<li><a href="#"><span>home</span></a></li>
+            <li><a href="#"><span>home</span></a></li>
+            <li><a href="#"><span>home</span></a></li>
+            <li><a href="#"><span>home</span></a></li>
+            <li><a href="#"><span>home</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav5">
+    	<ul>
+        	<li><a href="#"><span>home</span></a></li>
+            <li><a href="#"><span>hofsdfsdfssfme</span></a></li>
+            <li><a href="#"><span>hofsfme</span></a></li>
+            <li><a href="#"><span>hosfdsffsdfme</span></a></li>
+            <li><a href="#"><span>hosfdsfsme</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav6">
+    	<ul>
+        	<li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    
+    <div class="nav7">
+    	<ul>
+        	<li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                    <li><a href="#">二级导航</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    
+	<div class="nav8">
+    	<ul>
+        	<li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li>
+                    	<a href="#">二级导航</a>
+                    	<ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                    	<ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#">首页导航</a>
+                <ul>
+                	<li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                    <li>
+                    	<a href="#">二级导航</a>
+                        <ul>
+                			<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                    		<li><a href="#">三级导航</a></li>
+                		</ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

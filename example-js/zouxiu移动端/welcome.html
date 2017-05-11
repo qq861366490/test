@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>走秀-微场景</title>
+		<link rel="shortcut icon" href="http://www.xiustatic.com/favicon.ico" />
+		<link rel="stylesheet" href="css/ba.css" />
+		<link rel="stylesheet" href="css/welcome.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css"/>
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_hy4tohljggphkt9.css" />
+	</head>
+	<body>
+		<div class="swiper-container welcome-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide item1">
+					<div class="top">
+						<p>全新排版</p>
+						<p>更优雅,更舒适</p>
+					</div>
+					<div class="bottom">
+						<p>多联系不孤单</p>
+						<p>
+							<span class="red">走秀</span><span class="small">与</span>你相伴
+						</p>
+					</div>
+					
+				</div>
+				<div class="swiper-slide item2">
+					<ul class="arrow">
+						<li class="iconfont icon-jiantou"></li>
+						<li class="iconfont icon-jiantou"></li>
+						<li class="iconfont icon-jiantou"></li>
+					</ul>
+					<p class="gouwu">放入购物袋</p>
+					<div class="clock">
+						
+					</div>
+					<div class="bubble">
+						<p>满28元免运费</p>
+						<p>(有活动还有更多惊喜哦!)</p>
+					</div>
+				</div>
+				<div class="swiper-slide item3">
+					<p class="title">走秀网商品</p>
+					<div class="item3-img-con">
+						<div class="item3-img">
+							<img src="img/w_bg3.jpg" />
+						</div>
+					</div>
+					
+					<div class="bubble">
+						<p>每天10点</p>
+						<p>新品抢购</p>
+					</div>
+				</div>
+				<div class="swiper-slide item4">
+					<ul class="arrow">
+						<li class="iconfont icon-jiantou"></li>
+						<li class="iconfont icon-jiantou"></li>
+						<li class="iconfont icon-jiantou"></li>
+					</ul>
+					<p>NOW,开始走秀购物之行......</p>
+					<a href="javascript:;" class="item3-btn">开始体验</a>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/swiper-3.4.1.min.js"></script>
+		<script>
+			var swiper = new Swiper('.swiper-container',{
+				pagination : '.swiper-pagination',
+				onSlideChangeStart : function(sw){
+					var index = sw.activeIndex;
+					var previousIndex = sw.previousIndex;
+					$('.swiper-slide').eq(index).addClass('active');
+					$('.swiper-slide').eq(previousIndex).removeClass('active');
+				}
+			});
+			setTimeout(function(){
+				$('.item1').addClass('active');
+			},700);
+		</script>
+	</body>
+</html>

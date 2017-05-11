@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/cart.css">
+	</head>
+	<body>
+		
+		<div class="top">
+			<img src="img/cart-top1.png" alt="" />
+		</div>
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="select-all-box"><input type="checkbox" class="select-all"/><span>全选</span></th>
+						<th class="goods-name">商品</th>
+						<th class="goods-type"></th>
+						<th class="goods-type">单价</th>
+						<th class="goods-type option">数量</th>
+						<th class="goods-type">小计</th>
+						<th class="goods-type">操作</th>
+					</tr>
+				</thead>
+				<tbody class="list-wrap">
+					
+				</tbody>
+			</table>
+			<div class="other-option">
+				<div class="left">
+					<div class="item select">
+						<input type="checkbox" class="select-all"/><span>全选</span>
+					</div>
+					<a class="item" href="javascript:;">删除选中的商品</a>
+				</div>
+				<div class="right">
+					<div class="item ">
+						已选择<span class="total-select">0</span>件商品
+					</div>
+					<div class="item ">
+						总价为￥<span class="total-money">0.00</span>
+					</div>
+					<div class="item go-pay">去结算</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/layer.js"></script>
+		<script src="js/template.js"></script>
+		
+		<script id="cart-list" type="text/html">
+			{{each data as v}}
+				<tr data-id="{{v.id}}" data-stock="{{v.goods_stock}}">
+					<td class="select-box"><input type="checkbox" class="select"/></td>
+					<td class="goods-name">
+						<img src="{{v.goods_pic_m}}">
+						<span>{{v.goods_name}}</span>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</td>
+					<td class="goods-type">{{v.goods_type}}</td>
+					<td class="goods-price">{{v.goods_price}}</td>
+					<td class="goods-amount option">
+						<a href="javascript:;" class="option-item option-decrease">-</a>
+						<input class="option-item option-input"type="text" value="{{v.amount}}">
+						<a href="javascript:;" class="option-item option-increase">+</a>
+					</td>
+					
+					<td class="goods-total">{{(v.amount * v.goods_price).toFixed(2)}}</td>
+					<td class="goods-option">
+						<a href="javascript:;" class="delete">删除</a>
+					</td>
+				</tr>
+			{{ /each}}
+		</script>
+		
+		<script>
+			$(function(){
+				var cart = {
+					listWrap: $('.list-wrap'),
+					init: function(){
+						this.initData();
+						this.increase();
+						this.decrease();
+						this.input();
+						this.delete();
+					},
+					initData: function(){
+						var _this = this;
+						$.ajax({
+							type: 'get',
+							url: 'http://192.168.55.44/PC-Project-Admin/cartList.php',
+							dataType: 'jsonp',
+							success: function(data){
+								_this.initList(data);
+							}
+						});
+					},
+					initList: function(result){
+						if(result.status){
+							this.listWrap.html( template('cart-list',{data:result.data}) );
+						}else{
+							layer.alert(result.info);
+						}
+						
+					},
+					increase: function(){
+						var _this = this;
+						$('.list-wrap').on('click','.option-increase',function(){
+							var 
+								amount = $(this).prev().val(),
+								id = $(this).parents('tr').data('id'),
+								stock = $(this).parents('tr').data('stock');
+							
+							if(amount > stock){
+								layer.alert('库存不足');
+								return;
+							}
+							amount++;
+							
+							_this.update(id,amount);
+						});
+					},
+					decrease: function(){
+						var _this = this;
+						$('.list-wrap').on('click','.option-decrease',function(){
+							var 
+								amount = $(this).next().val(),
+								id = $(this).parents('tr').data('id');
+							
+							if(amount <= 1){
+								return;
+							}
+							
+							amount--;
+							
+							_this.update(id,amount);
+						});
+					},
+					input: function(){
+						var _this = this;
+						$('.list-wrap').on('blur','.option-input',function(){
+							var 
+								amount = $(this).val(),
+								id = $(this).parents('tr').data('id'),
+								stock = $(this).parents('tr').data('stock');
+							
+							if(amount > stock){
+								layer.alert('库存不足');
+								_this.initData();
+								return;
+							}
+							
+							_this.update(id,amount);
+						});
+					},
+					update: function(id,amount){
+						var _this = this;
+						var load = layer.load(2);
+						$.ajax({
+							url: 'http://192.168.55.44/PC-Project-Admin/cartUpdate.php',
+							data: {
+								id:id,
+								amount: amount
+							},
+							dataType: 'jsonp',
+							success: function(data){
+								layer.close(load);
+								_this.initData();
+							}
+						});
+					},
+					delete: function(){
+						var _this = this;
+						$('.list-wrap').on('click','.delete',function(){
+							var id = $(this).parents('tr').data('id');
+							var cfm = layer.confirm('确定删除宝贝么？',['确定','取消'],function(){
+								var ld = layer.load(2);
+								layer.close(cfm);
+								$.ajax({
+									url: 'http://192.168.55.44/PC-Project-Admin/cartDelete.php',
+									data: {
+										id: id
+									},
+									dataType: 'jsonp',
+									success: function(data){
+										layer.close(ld);
+										_this.initData();
+										layer.alert(data.info);
+									}
+								});
+							});
+						});
+					},
+					deleteSelect: function(){
+						
+					}
+				};
+				cart.init();
+			});
+		</script>
+	</body>
+</html>

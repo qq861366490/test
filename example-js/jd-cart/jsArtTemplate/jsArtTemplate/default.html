@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>jsArtTemplate</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- jsArtTemplate references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+
+    <script src="/js/jquery-1.8.3.js"></script>
+    <script src="/js/template.js"></script>
+    <script src="/js/template-syntax.js"></script>
+
+    <script id="DT_Template" type="text/template">
+        {each items as item index}        
+            {if index%2==1}
+                <div class='replies' style='float:right;'>    
+                <div class='{echo item.color}'>
+                    <span class='sticker sticker-right {echo item.stickercolor}'></span>
+            {else}
+                <div class='replies' style='float:left;'>    
+                <div class='{echo item.color}'>
+                    <span class='sticker sticker-left {echo item.stickercolor}'></span>
+            {/if}            
+                
+                    <div class="rely">
+                        <div class="author">{echo item.author}</div>
+                        <div class="text">{echo item.content}</div>
+                    </div>
+                </div>
+            </div>        
+        {/each}
+    </script>
+</head>
+<body>
+    <div id="container">
+    </div>
+</body>
+</html>

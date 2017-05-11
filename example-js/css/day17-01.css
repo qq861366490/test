@@ -1,0 +1,21 @@
+html,body,div,img,p {
+	 margin: 0;
+	 padding: 0;
+}
+.warterfall {
+	
+	position: relative;
+
+}
+.warterfall .imgs-wrap {
+	width: 210px;
+	padding: 10px;
+	
+	background-color: #ccc;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.warterfall .imgs-wrap img {
+	width: 100%;
+}

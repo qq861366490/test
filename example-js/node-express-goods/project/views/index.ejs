@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>
+			<%= title %>
+		</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+
+	<body>
+		<form class="goods-form" >
+			<h1><%= title %></h1>
+			<label for="">
+        			<span>商品名：</span>
+        			<input type="text" name="goodsName" placeholder="请输入商品名">
+	    	</label>
+			<label for="">
+			        <span>价格：</span>
+			        <input  type="text" name="price" placeholder="请输入商品价格">
+		    </label>
+			<label for="">
+			        <span>折扣：</span>
+			        <input type="text" name="dicount" placeholder="请输入商品折扣" >
+		    </label>
+			<label for="">
+			        <span>详情介绍：</span>
+			        <textarea name="note" placeholder="请输入商品名详情介绍"></textarea>
+		    </label>
+			</label>
+			
+			<label for="">
+		        	<input type="submit"  value="录入" class="button">
+		    </label>
+		</form>
+		<p class="p">
+			<a href="/list">商品列表</a>
+		</p>
+		<script src="/javascripts/jquery-1.11.3.js"></script>
+		<script src="/javascripts/<%= page %>.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册界面</title>
+		<style type="text/css">
+			html,body,div,p,span,input,h1,h3,ul,li {
+				margin: 0;
+				padding: 0;
+			}
+			html,body {
+				width: 100%;
+				height: 100%;
+			}
+			.cf:before,.cf:after {
+				display: table;
+				content: "";
+			}
+			.cf:after {
+				clear: both;
+			}
+			.container {
+				width: 100%;
+				height: 100%;
+				background-image: url(imgs/bg1.jpg);
+				background-size: cover;
+				transition: all 1s;
+			}
+			.register {
+				width: 300px;
+				height: 360px;
+				background-color: #c7c8ca;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				padding-left: 30px;
+				margin-top: -180px;
+				margin-left: -165px;
+				
+			}
+			div {
+				width: 300px;
+				
+			}
+			ul {
+				height: 70px;
+				width: 300px;
+				list-style: none;
+			}
+			ul li {
+				width: 300px;
+				height: 20px;
+				margin-bottom: 4px;
+			}
+			
+			ul li:last-child {
+				width: 400px;
+			}
+			ul:nth-child(1) {
+				margin-bottom: 10px;
+			}
+			.span1 {
+				display: block;
+				float: left;
+
+				color:#fff;
+				width: 60px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				margin-top: 4px;
+				margin-right: 4px;
+				display: none;
+			}
+			
+			input {
+				float: left;
+				display: block;
+			}
+			.checkbox1 {
+				float: none;
+				display: inline-block;
+			}
+			.item {
+				display: block;
+				float: left;
+				color:#000;
+				width: 80px;
+				height: 20px;
+				text-align: justify;
+				line-height: 20px;
+				
+			}
+			 .lower {
+				background-color: #c33;
+			}
+			p {
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #fff;
+				background-color: black;
+				float: left;
+				margin-left: 40px;
+				margin-top: 20px;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.verifyV {
+				height: 20px;
+				margin-right: 6px;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			.verify {
+
+				display: inline-block;
+				background-color: #cc0;
+				color:#fff;
+				width: 60px;
+				height: 24px;
+				text-align: center;
+				line-height: 24px;
+				margin-right: 6px;
+			}
+			
+			
+			h3 {
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #fff;
+				background-color: #c33;
+				cursor: pointer;
+				float: left;
+				margin-left: 40px;
+				margin-top: 20px;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+			h1 {
+				width: 300px;
+				text-align: center;
+				color: green;
+				margin-bottom: 20px;
+				margin-left: -20px;
+			}
+			.autoL {
+				cursor: pointer;
+				-webkit-user-select: none;
+						user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container cf">
+			<div class="register">
+				<h1>新用户注册</h1>
+				<div>
+					
+					<ul>
+						<li><span class="item">用户名</span><input type="text" class="userN"/></li>
+						
+						<li><span class="item">密码</span><input type="text" class="userP"/></li>
+						
+						<li style="padding-left: 70px;"><span class="span1">弱</span>
+						<span class="span1">中</span>
+						<span class="span1">高</span></li>
+					</ul>
+				</div>
+				
+				<div>
+					<ul>
+						<li><span class="item">确认密码</span><input type="text" class="checkP"/></li>
+						
+						<li><span class="item">手机号</span><input type="text" class="userPhone"/></li>
+						
+						<li><span class="item">验证码</span><input type="text" class="verifyV" style="width: 60px;"/>
+						
+						<b class="verify">ae09</b><a href="javascript:;" class="change">换一换</a></li>
+					</ul>
+					
+					<input type="checkbox" class="checkbox1"/><span class="autoL">十天自动登录</span>
+					<p>暂无错误！</p>
+					<h3>立即注册</h3>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<script src="js/$.js"></script>
+		<script type="text/javascript">
+			'use strict'
+		
+		window.onload = function(){
+			var passWord = $('.userP')[0],
+				spans = document.querySelectorAll('.span1'),
+				p = $('p')[0],
+				userN = $('.userN')[0],
+				checkP = $('.checkP')[0],
+				userPhone = $('.userPhone')[0],
+				verifyV = $('.verifyV')[0],
+				verify = $('.verify')[0],
+				change = $('.change')[0],
+				checkbox1 = $('.checkbox1')[0],
+				login = $('h3')[0],
+				autoL = $('.autoL')[0],
+				container = $('.container')[0],
+				k = true,
+				phn=true,
+				num = 1 ;
+			
+			userN.addEventListener('input',function(){
+				var v =userN.value;
+				var userV = /^[a-zA-z_]\w{5,15}$/;
+				if(v.length<6 || v.length>16){
+					p.innerHTML = '用户名长度不正确!';
+				}else if(!userV.test(v)){
+					p.innerHTML = '用户名输入不正确!';
+				}else{
+					p.innerHTML = '暂无错误！';
+				}
+				
+			},false)
+			userN.addEventListener('blur',function(){
+				var v =userN.value;
+				var userV = /^[a-zA-z_]\w{5,15}$/;
+				if(v == ''){
+					p.innerHTML = '请填写用户名!';
+				}else if(v.length<6 || v.length>16){
+					p.innerHTML = '用户名不能以数字开头!';
+				}else if(!userV.test(v)){
+					p.innerHTML = '用户名输入不正确!';
+				}else{
+					p.innerHTML = '暂无错误！';
+				}
+				
+			},false)
+			
+			passWord.addEventListener('focus',function(){
+				for(var i=0; i<spans.length; i++){
+					spans[i].style.display = 'block';
+				}
+				checkPw();
+			},false)
+			passWord.addEventListener('input',function(){
+				checkPw();
+			},false)
+			function checkPw(){
+				var v = passWord.value,
+					
+					weak = /^\d{6,16}$/,
+					middle = /^[a-zA-Z0-9]{6,16}$/,
+					strong = /^\w[\w-\.=\/*&~!@#$%^\\_]{5,15}$/,
+					chine = /[\u4e00-\u9fff]/;
+				if(v.length <6 ){
+				
+					p.innerHTML = '密码长度不能小于6位！';
+				}else if(v.length >16){
+					
+					p.innerHTML = '密码长度不能大于16位';
+				}else{
+					p.innerHTML = '密码不能有空格';
+					
+				}
+				
+				
+				if(v == ''|| weak.test(v)){
+					spans[0].style.backgroundColor = '#c33';
+					spans[1].style.backgroundColor = '#999';
+					spans[2].style.backgroundColor = '#999';
+					spans[0].innerHTML = '弱';
+					spans[1].innerHTML = '';
+					spans[2].innerHTML = '';
+					p.innerHTML = '暂无错误！';
+				}else if(middle.test(v)){
+					spans[1].style.backgroundColor = 'green';
+					spans[0].style.backgroundColor = '#999';
+					spans[2].style.backgroundColor = '#999';
+					spans[1].innerHTML = '中';
+					spans[0].innerHTML = '';
+					spans[2].innerHTML = '';
+					p.innerHTML = '暂无错误！';
+				}else if(strong.test(v)){
+					spans[2].style.backgroundColor = 'blue';
+					spans[0].style.backgroundColor = '#999';
+					spans[1].style.backgroundColor = '#999';
+					spans[2].innerHTML = '强';
+					spans[0].innerHTML = '';
+					spans[1].innerHTML = '';
+					p.innerHTML = '暂无错误！';
+				}else if(chine.test(v) == true){
+					p.innerHTML = '密码不能含有中文！';
+					passWord.focus();
+					return;
+				}
+			}
+			passWord.addEventListener('blur',function(){
+				var chine = /[\u4e00-\u9fff]/;
+				
+				var v = passWord.value;
+				for(var i=0; i<spans.length; i++){
+					spans[i].style.display = 'block';
+					
+				}
+				var v = passWord.value;
+				if(v.trim() == ''){
+					
+					p.innerHTML = '密码不能为空！';
+					spans[0].style.display = 'none';
+					spans[1].style.display = 'none';
+					spans[2].style.display = 'none';
+					
+					return;
+				}else if(chine.test(v) == true){
+					p.innerHTML = '密码不能含有中文！';
+					passWord.focus();
+					return;
+				}
+				
+			},false)
+			
+			checkP.addEventListener('blur',function(){
+				var v = checkP.value;
+				var pv = passWord.value
+				if(v == pv && pv!= '' ){
+					p.innerHTML = '密码填写正确！';
+				}else if(v != pv){
+					p.innerHTML = '密码确认错误！';
+				}else if(pv == ''){
+					p.innerHTML = '请填写密码！';
+				}else if(v == ''){
+					p.innerHTML = '请填写确认密码！';
+				}
+			},false)
+			
+			userPhone.addEventListener('blur',function(){
+				var reg = /^(13|18|17)\d{9}$/;
+				var u = userPhone.value;
+				if(reg.test(u) == false){
+					phn=false;
+					p.innerHTML = '请填写正确的手机号';
+				}else if(reg.test(u) == true){
+					phn=true;
+					p.innerHTML = '手机号填写正确';
+				}
+				
+			},false)
+			
+			
+			verifyV.addEventListener('blur',function(){
+					checkVerify();
+				},false)
+			verifyV.addEventListener('input',function(){
+					var verifyH = verify.innerHTML;
+					var reg = new RegExp('^'+verifyH+'$','i');
+					var userV = verifyV.value;
+					
+					if(reg.test(userV)){
+						k = true;
+					}else{
+						k = false;
+					}
+				},false)
+			function checkVerify(){
+				var verifyH = verify.innerHTML;
+					var reg = new RegExp('^'+verifyH+'$','i');
+					var userV = verifyV.value;
+					
+					if(reg.test(userV)){
+						
+						
+						k = true;
+						p.innerHTML = '验证码正确';
+					}else{
+						
+						
+						k = false;
+						p.innerHTML = '验证码不正确';
+						
+					}
+			}
+			change.addEventListener('click',changeV,false)
+			
+			function changeV(){
+					var v = '',
+						str ='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+					for(var i=0; i<4; i++){
+						var n = parseInt(Math.random()*62);
+						v += str[n];
+					}
+					verify.innerHTML = v;
+				
+				}
+			changeV();
+			
+			autoL.addEventListener('click',function(e){
+				e = e || window.event;
+				e.preventDefault ? e.preventDefault() : e.returnValue = false;
+				if(!checkbox1.checked){
+					checkbox1.checked = true;
+				}else{
+					checkbox1.checked = false;
+				}
+			},false)
+			
+			login.addEventListener('click',function(e){
+				e = e || window.event;
+				e.preventDefault ? e.preventDefault() : e.returnValue = false;
+				
+			
+				if(userN.value == ''){
+					alert('用户名不能为空！');
+					userN.focus();
+					return;
+				}else if( passWord.value == ''){
+					alert('密码不能为空！');
+					passWord.focus();
+					return;
+				}else if( passWord.value != checkP.value){
+					alert('密码不一致！');
+					checkP.focus();
+					return;
+				}else if(phn==false){
+					alert('手机号不正确！');
+					userPhone.focus();
+					return;
+				}else if(k==false){
+					alert('验证码不正确！');
+					verifyV.focus();
+					return;
+				}
+				
+				
+				if(checkbox1.checked){
+					setCookie('userName',userN.value,10);
+					setCookie('passWord',passWord.value,10);
+					setCookie('userPhone',userPhone.value,10);
+					alert(document.cookie)
+				}else{
+					setCookie('userName',userN.value,0);
+					setCookie('passWord',passWord.value,0);
+					setCookie('userPhone',userPhone.value,0);
+					alert(document.cookie)
+				}
+				
+			},false)
+			
+			var timer1 = setInterval(function(){
+				num++;
+				if(num >6){
+					num = 1;
+				}
+				container.style.backgroundImage = 'url(imgs/bg'+num+'.jpg)';
+				
+				
+			},2000);
+		}
+		</script>
+	</body>
+</html>

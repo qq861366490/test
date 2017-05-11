@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width:180px;
+				height:300px;background:url(img/charector.png);
+				animation-name:ren;
+				animation-duration:1s;
+				animation-timing-function:step-start;
+				animation-iteration-count:infinite;
+				
+			}
+			@keyframes ren{
+				0%{background-position:0 0;}
+				16%{background-position:-180px 0;}
+				32%{background-position:-360px 0;}
+				48%{background-position:-540px 0;}
+				64%{background-position:-720px 0;}
+				80%{background-position:-900px 0;}
+				100%{background-position:-1080px 0;}
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

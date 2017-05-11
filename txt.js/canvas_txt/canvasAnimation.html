@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas动画</title>
+		<style type="text/css">
+			body,html {
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				display: block;
+				margin: 20px auto;
+				border:1px dashed #999;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can" height="500" width="500"></canvas>
+		
+		<script type="text/javascript">
+			var dom = document.getElementById("can")
+			var can = dom.getContext("2d");
+			var ball = {
+				x : 0,
+				y : 0,
+				r : 20
+			}
+			
+			
+			setInterval(function(){
+				can.clearRect(0,0,dom.width,dom.height);
+				can.beginPath();
+				can.fillStyle = "#f00"
+				can.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+				can.closePath();
+				can.fill();
+				
+				ball.x ++;
+				ball.y ++;
+				
+			},1);
+		</script>
+	</body>
+</html>

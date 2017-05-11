@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东楼层</title>
+	<style type="text/css">
+		html,body,div,ul,li {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.container {
+			width: 1000px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.container .top {
+			width: 1000px;
+			height: 600px;
+			line-height: 600px;
+			text-align: center;
+			background-color: #000;
+			margin-bottom: 20px;
+			color: #fff;
+			font-size: 40px;
+		}
+		.container .floors {
+			font-size: 40px;
+		}
+		.container .floors .floors-item {
+			width: 1000px;
+			height: 600px;
+			line-height: 600px;
+			text-align: center;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+		}
+		.container .stairs {
+			width: 40px;
+			border: 1px solid #ccc;
+			position: fixed;
+			left: 0;
+			top: 0;
+		}
+		.container .stairs .stairs-item {
+			width: 40px;
+			height: 40px;
+			border-bottom: 1px solid #fff;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			background-color: #666;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+		.container .stairs .stairs-item:hover {
+			background-color: #c33;
+		}
+		.container .stairs .stairs-item.active {
+			background-color: #c33;
+		}
+		.container .stairs .stairs-backTop {
+			width: 40px;
+			height: 50px;
+			line-height: 25px;
+			text-align: center;
+			color: #fff;
+			background-color: #c33;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="top">banner</div>
+		<div class="floors">
+		</div>
+		<ul class="stairs">
+		</ul>
+	</div>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript">
+	'use strict';
+ 		$(function(){
+ 			var Banner = {
+ 				container: $('.container'),
+ 				top: $('.container .top'),
+ 				floors: $('.container .floors'),
+ 				stairs: $('.container .stairs'),
+ 				body: $('body'),
+ 				floorItems: null,
+ 				backBtn: null,
+ 				stairsItem: null,
+ 				init: function(num){
+ 					this.createFloors(num);
+ 					this.resize();
+ 					this.scroll();
+ 					this.click();
+ 					this.backTop();
+ 				},
+ 				createFloors: function(num){
+ 					var str1 = '',
+		 				str2 = '';
+		 			for(var i=1; i<=num; i++){
+		 				str1 += '<div class="floors-item">第'+i+'层</div>';
+		 				str2 += '<li class="stairs-item">'+i+'楼</li>';
+		 			}		
+		 			this.floors.html(str1);
+		 			for(var i=0; i<num; i++){
+		 				var color = parseInt(Math.random()*16*15*16+256).toString(16);
+		 				this.floors.find('.floors-item').eq(i).css({
+			 				backgroundColor: "#"+color
+			 			});
+		 			}
+		 			str2 += '<li class="stairs-backTop">回到顶部</li>';
+		 			this.stairs.html(str2);
+		 			var width = this.stairs.width(),
+		 				height = this.stairs.height(),
+		 				Wheight = $(window).height(),
+		 				conLeft = this.container.offset().left;
+
+		 			this.stairs.css({
+		 				left: conLeft-width,
+		 				top: (Wheight-height)/2
+		 			});
+		 			this.floorItems = this.floors.find('.floors-item');
+		 			this.backBtn = this.stairs.find('.stairs-backTop');
+		 			this.stairsItem = $('.stairs .stairs-item');
+ 				},
+ 				resize: function(){
+ 					var _this = this;
+ 					$(window).on('resize',function(){
+ 						var width = _this.stairs.width(),
+			 				height = _this.stairs.height(),
+			 				Wheight = $(window).height(),
+			 				Wwidth = $(window).width(),
+			 				conLeft = _this.container.offset().left,
+			 				conWidth = _this.container.width();
+
+			 			if(Wwidth <= conWidth){
+			 				_this.stairs.css({
+				 				left: 0,
+				 				top: (Wheight-height)/2
+				 			})
+			 			}else{
+			 				_this.stairs.css({
+				 				left: conLeft-width,
+				 				top: (Wheight-height)/2
+				 			})
+			 			}
+ 					})
+ 				},
+ 				scroll: function(){
+ 					var _this = this;
+ 					$(window).on('scroll',function(){
+ 						var Wheight = $(window).height(),
+ 							scrollTop = _this.body.scrollTop();
+ 						_this.stairs.stop(true).fadeOut(200);
+ 						_this.floorItems.each(function(index){
+ 							var self = $(this);
+ 							var top = self.offset().top,
+			 					m = parseInt( self.css('marginBottom') ),
+			 					height = self.height();
+			 				
+			 				if(scrollTop+Wheight/2 > top && scrollTop+Wheight/2 < top+height+m ){
+			 					_this.stairsItem.eq(index).addClass('active').siblings().removeClass('active');
+			 					_this.stairs.stop(true).fadeIn(200);
+			 				}
+ 						})
+ 					})
+ 				},
+ 				click: function(){
+ 					var _this = this;
+ 					this.stairs.on('click','.stairs-item',function(){
+ 						var index = $(this).index();
+ 						var b = parseInt( _this.floorItems.css('border') )*2;
+ 						var height = _this.top.height()+b;
+ 						var m = parseInt( _this.floorItems.css('marginBottom') );
+ 						$(this).addClass('active').siblings().removeClass('active');
+ 						$(window).off('scroll');
+ 						_this.body.stop(true).animate({
+ 							scrollTop: (index+1)*(height+m)
+ 						},800,function(){
+ 							$(window).on('scroll',function(){
+ 								var Wheight = $(window).height(),
+		 							scrollTop = _this.body.scrollTop();
+		 						_this.stairs.stop(true).fadeOut(200);
+		 						_this.floorItems.each(function(index){
+		 							var self = $(this);
+		 							var top = self.offset().top,
+					 					m = parseInt( self.css('marginBottom') ),
+					 					height = self.height();
+					 				if(scrollTop+Wheight/2 > top && scrollTop+Wheight/2 < top+height+m ){
+					 					_this.stairsItem.eq(index).addClass('active').siblings().removeClass('active');
+					 					_this.stairs.stop(true).fadeIn(200);
+					 				}
+		 						})
+ 							});
+ 						})
+ 					})
+ 				},
+ 				backTop: function(){
+ 					var _this = this;
+ 					this.backBtn.on('click',function(){
+ 						_this.body.animate({
+ 							scrollTop: 0
+ 						})
+ 					})
+ 				}
+ 			}
+ 			Banner.init(10);
+ 		})
+   
+	</script>
+</body>
+</html>

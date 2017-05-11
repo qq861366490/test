@@ -1,0 +1,191 @@
+header {
+  width: 100%;
+  height: 0.86rem;
+  background: #b62222;
+  background: -moz-linear-gradient(top, #b62222 0%, #a90329 0%, #a11311 100%);
+  background: -webkit-linear-gradient(top, #b62222 0%, #a90329 0%, #a11311 100%);
+  background: linear-gradient(to bottom, #b62222 0%, #a90329 0%, #a11311 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b62222', endColorstr='#a11311', GradientType=0);
+  text-align: center;
+  line-height: 0.86rem;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+header h2 {
+  font-size: 0.36rem;
+  font-weight: 500;
+}
+header a {
+  width: 1.04rem;
+  height: 0.54rem;
+  position: absolute;
+  right: 0.2rem;
+  top: 0.17rem;
+  color: #fff;
+  line-height: 0.54rem;
+  /* border: 0.01rem solid rgba(0,0,0,0.2);*/
+  box-shadow: inset -0.01rem 0.01rem 0.03rem rgba(255, 255, 255, 0.3), inset 0.01rem -0.01rem 0.03rem rgba(255, 255, 255, 0.3), -0.01rem 0.01rem 0.03rem rgba(0, 0, 0, 0.3), 0.01rem -0.01rem 0.03rem rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  border-radius: 0.14rem;
+}
+header a.iconfont {
+  font-size: 0.36rem;
+}
+.main {
+  width: 100%;
+  padding-top: 0.86rem;
+  padding-bottom: 0.98rem;
+  height: auto;
+  background-color: #f3f4f6;
+}
+.main .nav {
+  width: 100%;
+  height: 0.56rem;
+  overflow-y: hidden;
+  overflow-x: auto;
+  background-color: #9a9fa5;
+  display: flex;
+  padding-left: 0.1rem;
+  box-sizing: border-box;
+}
+.main .nav li {
+  padding-left: 0.2rem;
+  text-align: center;
+  position: relative;
+}
+.main .nav li a {
+  width: 100%;
+  height: 0.56rem;
+  display: block;
+}
+.main .nav li a.iconfont {
+  font-size: 0.32rem;
+  line-height: 0.56rem;
+  color: #000;
+}
+.main .nav li.active a.iconfont {
+  color: #fff;
+}
+.main .nav li.active:after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -0.02rem;
+  left: 50%;
+  margin-left: 0.03rem;
+  border-bottom: 0.09rem solid #f3f4f6;
+  border-left: 0.07rem solid transparent;
+  border-right: 0.07rem solid transparent;
+}
+.main .container {
+  width: 100%;
+  height: auto;
+  padding-top: 0.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-around;
+}
+.main .container .container-item {
+  width: 2.68rem;
+  height: 3.46rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+.main .container .container-item .item-img-box {
+  width: 2.44rem;
+  height: 2.44rem;
+  padding: 0.06rem;
+  background-color: #fff;
+  box-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+.main .container .container-item .item-img-box:after,
+.main .container .container-item .item-img-box:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -0.04rem;
+  width: 50%;
+  height: 0.05rem;
+  -webkit-filter: blur(0.02rem);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+.main .container .container-item .item-img-box:after {
+  left: 0;
+  transform: rotate(-2deg);
+}
+.main .container .container-item .item-img-box:before {
+  right: 0;
+  transform: rotate(2deg);
+}
+.main .container .container-item .item-img-box div {
+  width: 100%;
+  height: 100%;
+}
+.main .container .container-item .item-img-box div img {
+  width: 100%;
+  height: auto;
+}
+.main .container .container-item p {
+  margin-top: 0.1rem;
+  font-size: 0.25rem;
+}
+.main .container .container-item .price {
+  margin-top: 0.1rem;
+}
+.main .container .container-item .price span {
+  float: left;
+  display: block;
+  color: red;
+  margin-left: 0.1rem;
+  font-size: 0.25rem;
+}
+.main .container .container-item .price s {
+  float: right;
+  display: block;
+  margin-right: 0.1rem;
+  font-size: 0.25rem;
+}
+footer {
+  width: 100%;
+  height: 0.98rem;
+  background-color: #484850;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+}
+footer ul {
+  display: flex;
+}
+footer ul li {
+  text-align: center;
+  flex: 1;
+  padding-top: 0.04rem;
+}
+footer ul li a {
+  color: #fff;
+  width: 100%;
+  height: 0.98rem;
+  display: block;
+}
+footer ul li a span.iconfont {
+  font-size: 0.48rem;
+}
+footer ul li a p {
+  font-size: 0.24rem;
+}
+footer ul li.active {
+  border-top: 0.04rem solid #f00;
+}
+footer ul li.active a {
+  margin-top: -0.04rem;
+}

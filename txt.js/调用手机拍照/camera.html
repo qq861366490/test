@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <style type="text/css">
+    	img{
+    		width: 100%;
+    		height: auto;
+    	}
+    </style>
+</head>
+<body>
+	<a href="javascript:;" id="btn">拍照</a>
+	<img alt="" id="img" />
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			
+   			var cam = plus.camera.getCamera(1);
+   			
+   			var size = cam.supportedImageResolutions;
+   			var frt = cam.supportedImageFormats;
+   			
+   			console.log("本手机支持的照片分辨率有:");
+   			console.log(size);
+   			console.log("本手机支持的照片格式有:");
+   			console.log(frt);
+   			$("#btn").click(function(){
+	   			cam.captureImage(function(path){
+	   				console.log("拍照成功");
+	   				var imgSrc = plus.io.convertLocalFileSystemURL(path);
+	   				$("#img").attr("src",imgSrc);
+	   			},function(err){
+	   				console.log(err);
+	   			},{
+	   				resolution : size[0],
+	   				format : frt[0]
+	   			});
+   			})
+   		});
+   		
+    </script>
+</body>
+</html>

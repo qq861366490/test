@@ -1,0 +1,8 @@
+java  jdk
+JAVA_HOME : java jdk安装目录
+PATH : java jdk bin目录
+CLASS_PATH : .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
+
+Android sdk
+ANDROID_HOME : android sdk目录
+path : sdk/tools 目录 ;  platform-tools 目录

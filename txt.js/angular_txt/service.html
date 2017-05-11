@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		
+		<!--姓名:{{name}}
+		年龄: {{age}}
+		<a href="javascript:;" ng-click="say()">说话</a><br /><br /><br /><br />
+		
+		姓名(sayHello3):{{name1}}
+		年龄: {{age1}}
+		<a href="javascript:;" ng-click="say1()">说话</a>-->
+		
+		父级data值:{{data}}
+		<a href="javascript:;" ng-click="getData()">父级获取data值</a>
+		<a href="javascript:;" ng-click="setData()">父级设置data值</a>
+		<br /><br /><br />
+		<div ng-controller="sub">
+			子级data值:{{subData}}
+			<a href="javascript:;" ng-click="subGetData()">子级获取data值</a>
+			<a href="javascript:;" ng-click="subSetData()">子级设置data值</a>
+			
+		</div>
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			var app = angular.module("myApp" , ["plugin"]);
+			
+			
+			app.factory("sayHello" , function(){
+				var data = "sayHello";
+				return {
+					name : "zhuiszhu",
+					sayHello : function(){
+						
+						console.log("sayHello");
+					},
+					age : 18,
+					getData : function(){
+						return data;
+					},
+					setData : function(data1){
+						data = data1;
+					}
+				}
+			});
+			
+			app.config(function(sayWelcome2Provider){
+				sayWelcome2Provider.country = "美国";
+			});
+			/*
+			app.service("sayHello1", function(){
+				this.name = "abc";
+				this.sayGoodBye = function(){
+					console.log("明天见!");
+				}
+				this.age = 18;
+			});
+			
+			app.provider("sayHello3" , function(){
+				return {
+					$get : function(){
+						return {
+							name : "sayHello3",
+							age : 23,
+							sayDabao : function(){
+								console.log("怎么又是你!");
+							}
+						}
+					}
+				}
+			});
+			
+			*/
+			app.controller("main" , ["$scope" , "sayHello" ,"getAge" , "sayWelcome2" ,function($scope , sayHello , getAge , sayWelcome2){
+//				$scope.name = sayHello1.name;
+//				$scope.age = sayHello1.age;
+//				$scope.say = sayHello1.sayGoodBye;
+//				
+//				
+//				$scope.name1 = sayHello3.name;
+//				$scope.age1 = sayHello3.age;
+//				$scope.say1 = sayHello3.sayDabao;
+				
+				$scope.data = sayHello.getData();
+				
+				$scope.getData = function(){
+					$scope.data = sayHello.getData();
+				}
+				
+				$scope.setData = function(){
+					sayHello.setData("这是父级设置的data值");
+				}
+				
+				
+				sayWelcome2();
+			}]);
+			
+			
+			app.controller("sub" , ["$scope" , "$rootScope" , "sayHello" , function($scope , $rootScope , sayHello){
+				$scope.subData = sayHello.getData();
+				
+				$scope.subSetData = function(){
+					sayHello.setData("子级设置的data值");
+				}
+				
+				$scope.subGetData = function(){
+					$scope.subData = sayHello.getData();
+				}
+			}])
+			
+		</script>
+	</body>
+</html>

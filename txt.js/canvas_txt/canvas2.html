@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,html {
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				display: block;
+				margin: 20px auto;
+				border:1px dashed #999;
+			}
+			img{
+				width: 700px;
+				height: 700px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can" height="500" width="500"></canvas>
+		
+		<script type="text/javascript">
+			var dom = document.getElementById("can");
+			var can = dom.getContext("2d");
+			
+			//设置描边样式
+			can.strokeStyle = "cornflowerblue";
+			can.fillStyle = "aquamarine";
+			//设置线条宽度
+			can.lineWidth = 8;
+			
+			//设定线条起点
+//			can.moveTo(0,0);
+			//设置线条终点
+//			can.lineTo(100,100);
+//			can.moveTo(250,250);
+//			can.lineTo(0,500);
+			
+			
+			//创建矩形选区
+			can.rect(30,30,200,50);
+			
+			
+			
+			//进行描边
+//			can.stroke();
+			//填充颜色
+			can.fill();
+			
+//			can.strokeStyle = "#ff0";
+			//直接描边矩形
+//			can.strokeRect(100,100,300,100);
+//			can.fillRect() 直接填充矩形
+			
+			//相当于创建新图层(抬笔)
+			can.beginPath();
+			
+			//画圆弧 (x,y,r,start,end) x,y代表圆弧的圆心坐标  r 代表圆弧半径 start代表圆弧起点,end 代表圆弧终点
+			can.arc(250,250,150,0,1.5*Math.PI);
+			
+//			画缺角圆
+			can.lineTo(250,250);
+			can.lineTo(400,250);
+			can.closePath();
+			
+			//封闭路径(选区)
+//			can.closePath();
+			can.fill();
+			
+			//清空指定范围内的画布内容
+			can.clearRect(0,0,500,500);
+			
+			//设置线条两端的样式
+//			默认butt 没有线帽
+//			round 圆形线帽
+//			square 方形线帽
+//			can.lineCap = "butt";
+
+			//设置折线折角部分样式
+//			bevel折角
+//			miter 尖角
+//			round 圆角
+//			can.lineJoin = "miter"
+	
+			//设置尖角的折断值的大小
+//			(当尖角长度超过某个值的时候,变成折角)
+			can.miterLimit = 5
+		/*
+			can.shadowBlur = 10;//设置投影模糊度
+			can.shadowColor ="black";//设置投影颜色
+			can.shadowOffsetX = -9;//设置投影水平偏移量
+			can.shadowOffsetY = 9;//设置投影垂直偏移量
+			
+			can.beginPath();
+			can.lineWidth = 20;
+			can.lineCap = "round";
+			can.lineJoin = "miter";
+			can.strokeStyle = "aquamarine";
+			can.miterLimit = 8;
+			can.moveTo(100,210);
+			can.lineTo(400,190);
+			can.lineTo(300,270);
+			can.stroke();
+			*/
+			
+			can.clearRect(0,0,500,500);
+			can.beginPath();
+			
+			//创建线性渐变createLinearGradient(x0,y0,x1,y1);
+			//x0,y0代表渐变起点坐标,x1,y1代表渐变终点坐标
+			var lg = can.createLinearGradient(100,250,400,250);
+			lg.addColorStop(0,"#0a00b2");
+			lg.addColorStop(0.5,"#ff0");
+			lg.addColorStop(1,"#f00");
+			
+			/*
+			can.fillStyle = "#f00";
+			can.strokeStyle = lg;
+			can.lineWidth = 3;
+			can.textAlign = "center";//设置文本对齐方式
+			can.font = "60px/70px microsoft yahei";//设置字体相关信息,包括字体大小,字体等,用法参考css font属性
+//			can.fillText("hello world" , 250 ,250);
+			can.strokeText("hello world" , 250 ,250);*/
+			
+			can.fillStyle = lg;
+			
+//			can.fillRect(0,0,500,500);
+			can.arc(250,250,150,0,2*Math.PI);
+			can.fill();
+		</script>
+	</body>
+</html>

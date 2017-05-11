@@ -1,0 +1,1 @@
+window.onload=function(){var o="宝马";console.log(o),console.log("你还认得我么")};

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width:250px;
+				height:250px;
+				background:black;
+				border-radius:20px;
+				display:flex;
+				opacity:0.8;
+				filter:alpha(opacity=80);
+			}
+			span{
+				display:block;
+				width:50px;
+				height:50px;
+				border-radius:50%;
+				background:#fff;
+			}
+			.one{
+				justify-content:center;
+				align-items:center;
+			}
+			.two{
+				justify-content:space-around;
+			}
+			.three{
+				flex-direction:column;
+				justify-content:space-around;
+			}
+			.three>div{
+				width:200px;
+				height:50px;
+				display:flex;
+				justify-content:space-between;
+				border:none;
+			}
+			.four{
+				justify-content:space-around;
+			}
+			.four>div{
+				width:50px;
+				height:150px;
+				display:flex;
+				flex-direction:column;
+				justify-content:space-between;
+				border:none;
+			}
+			.one,.two,.three,.four{
+				position:absolute;
+			}
+			.one{
+				transform:translateZ(125px);
+			}
+			.two{
+				transform:translateZ(-125px);
+			}
+			.three{
+				transform:rotateX(90deg) translateZ(125px);
+			}
+			.four{
+				transform:rotateX(90deg) translateZ(-125px);
+			}
+			.five{
+				transform:rotateY(90deg) translateZ(125px);
+			}
+			.six{
+				transform:rotateY(90deg) translateZ(-125px);
+			}
+			@keyframes name{
+				from{transform:rotateX(0deg) rotateY(0deg)}
+				to{transform:rotateX(360deg) rotateY(360deg)}
+			}
+			nav{
+				width:250px;
+				height:250px;
+				margin:200px auto;
+				position:relative;
+				animation:name 10s linear infinite;
+				transform-style:preserve-3d;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="one">
+				<span></span>
+			</div>
+			<div class="one two">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="one three">
+				<span></span>
+				<div>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="one four">
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="one four five">
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+				<span></span>
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="one four six">
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+				<div class="div4">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</nav>
+	</body>
+</html>

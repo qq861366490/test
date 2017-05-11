@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<div ui-view="a" ></div>
+		
+		<div ui-view="b"></div>
+		
+		<div ui-view="c"></div>
+		
+		
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp" , ["ui.router"]);
+			
+			app.config(["$stateProvider" , "$urlRouterProvider" , function($stateProvider , $urlRouterProvider){
+				
+//				.state("模块名" , {url:"路由访问地址", templateUrl:"模块代码路径"})
+				
+//				路由嵌套:
+//					在需要嵌套的模块代码中添加 指令 ui-view (挖窗口)
+//					嵌套配置,只需将模块名进行叠加,并通过"."来进行连接
+//					state方法中的url并不需要进行叠加,仅在访问页面的时候,浏览器地址需要父级子级地址叠加访问
+				
+				
+				$stateProvider.state("home" , {
+					url : "/index",
+					views : {
+						"a" : {
+							templateUrl : "./indexModule.html"
+						},
+						"b" : {
+							templateUrl : "./listModule.html"
+						},
+						"c" : {
+							templateUrl : "./subModule.html"
+						}
+					}
+				}).state("list" , {
+					url : "/list",
+					templateUrl : "./listModule.html"
+				}).state("home.sun" , {
+					url : "/sun",
+					templateUrl : "./subModule.html"
+				})
+			}]);
+			
+			
+			app.controller("main", ["$scope" , function($scope){
+				
+			}]);
+		</script>
+	</body>
+</html>

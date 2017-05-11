@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--controls : 是否显示播放控件-->
+		<!--autoplay : 视频是否自动播放-->
+		<!--loop : 循环播放-->
+		<!--muted : 静音-->
+		<!--preload : -->
+			<!--auto:默认加载视频的所有数据-->
+			<!--metadata:只加载元数据-->
+			<!--none : 不加载视频 -->
+		<!--元数据-->
+		
+		
+		<!--<source></source> 存放资源地址标签(做兼容时可使用多个source标签)-->
+		<!--type属性用来声明资源的媒体流解析格式-->
+		<video controls="controls" loop="loop" preload="none">
+			<source src="http://www.runoob.com/try/demo_source/movie.mp4" type="video/mp4"></source>
+			<source src="http://www.runoob.com/try/demo_source/movie.webM" type="video/webm"></source>
+			<source src="http://www.runoob.com/try/demo_source/movie.ogg" type="video/ogg"></source>
+			对不起,您的浏览器太low了!请更换
+		</video>
+	</body>
+</html>

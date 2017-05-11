@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>抛物线运动</title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 1000px;
+				top: 600px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script src="js/$.js"></script>
+		<script>
+			"use strcit"
+		window.onload = function(){
+			var div = $('div')[0];
+			var timer = null;
+			document.onclick = function(e){
+				e = e || window.event;
+				clearInterval(timer);
+				var left = parseInt(css1(div,'left'));
+				var top = parseInt(css1(div,'top'));
+				var x = e.clientX-left ,
+					y = top-e.clientY,
+					b = (y+0.001*x*x)/x;
+				var l = 0,  t= 0;
+				timer = setInterval(function(){
+					if(e.clientX > left){
+						l +=5;
+						if(l > x ){
+							clearInterval(timer);
+						}
+					}else if(e.clientX < left){
+						l -= 5;
+						if(l < x ){
+							clearInterval(timer);
+						}
+					}
+					t = -0.001*l*l+b*l;
+					div.style.left = l+left +'px';
+					div.style.top = top-t +'px'	;
+						
+				},13)
+			}
+		}
+		</script>
+	</body>
+</html>
+

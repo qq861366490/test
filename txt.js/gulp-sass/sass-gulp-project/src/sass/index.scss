@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+//引入共用的sass文件
+@import "_reset";
+
+@function getMargin($parent:1200px,$child: 240px,$num: 4){
+	@return ( $parent - $child * $num ) / $num;
+}
+
+$baseBg: #eee;
+
+body {
+	background-color: $baseBg;
+}
+
+h1 {
+	text-align: center;
+}
+
+.tab {
+	position: absolute;
+	top: 0;
+	width: 65px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	color: #fff;
+	background-color: #ffac13;
+}
+
+/* 阴影 */
+@mixin box-shadow($x:0,$y:0,$expand:10px,$color: #666){
+	box-shadow: $x $y $expand $color;
+	-webkit-box-shadow: $x $y $expand $color;
+	-moz-box-shadow: $x $y $expand $color;
+}
+
+.container {
+	width: 1200px;
+	margin: 100px auto;
+
+	ul.list {
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
+			height: 0;
+		}
+
+		$width: 240px;
+		$top: 30px;
+		$margin: getMargin(1200px,$width,4);
+
+		.list-item {
+			position: relative;
+			top: 0;
+			float: left;
+			width: $width;
+			height: 260px;
+			padding: 20px 0;
+			margin:{
+				left: $margin;
+				top: $top;
+			};
+			background-color: #fff;
+			-webkit-transition: top 0.5s;
+ 		  			transition: top 0.5s;
+			img {
+				width: 220px;
+				height: 220px;
+			}
+
+			.item-tab {
+				@extend .tab;
+				font-size: 14px;
+				left: 50%;
+				margin-left: -32px;
+			}
+
+			&:hover {
+				@include box-shadow($expand:20px,$color:#888);
+
+				top: -5px;
+			}
+		}
+	}
+}
+

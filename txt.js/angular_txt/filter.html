@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<ul>
+			<li ng-repeat="item in list | orderBy : 'age' : -1">
+				用户名:{{item.name}} 年龄 : {{item.age}}
+			</li>
+		</ul>
+		
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			
+			app.controller("main" , ["$scope","$rootScope",function($scope , $rootScope){
+				$scope.list = [
+					{name:"zhuiszhu",age:12},
+					{name:"abc",age:18},
+					{name:"def",age:22},
+					{name:"height",age:48},
+					{name:"width",age:32},
+					{name:"zhu",age:16}
+				];
+			}]);
+			
+			
+		</script>
+	</body>
+</html>

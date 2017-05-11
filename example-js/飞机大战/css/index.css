@@ -1,0 +1,93 @@
+html,body,div,img {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	width: 320px;
+	height: 568px;
+	margin: 50px auto;
+	position: relative;
+}
+.container .start,.container .game {
+	width: 320px;
+	height: 568px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.container .start {
+	background: url(../image/bg0.png) no-repeat center;
+	background-size: cover;
+	z-index: 1;
+
+}
+.container .start .start-btn {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #999;
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	bottom: 200px;
+	left: calc(50% - 50px);
+}
+.container .game {
+	background-image: url(../image/bg.png);
+	background-position-y: 0px;
+	display: none;
+	overflow: hidden;
+}
+.container .game img {
+	position: absolute;
+}
+.container .game .plane {
+	left: calc(50% - 33px);
+	bottom: 0;
+}
+.container .game .game-over {
+	width: 100px;
+	height: 60px;
+	line-height: 30px;
+	text-align: center;
+	color: #000;
+	font-weight: 700;
+	position: absolute;
+	bottom: calc(50% - 20px);
+	left: calc(50% - 50px);
+	display: none;
+}
+.container .game .start-btn1 {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #666;
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	bottom: 200px;
+	left: calc(50% - 50px);
+	display: none;
+}
+.container .game .pause {
+	width: 100px;
+	height: 60px;
+	line-height: 30px;
+	text-align: center;
+	color: #000;
+	font-weight: 700;
+	position: absolute;
+	bottom: calc(50% - 20px);
+	left: calc(50% - 50px);
+	display: none;
+}
+.container .game .bullet　{
+	left: -200;
+	top: -100;
+}
+.container .game .enemy　{
+	left: -500;
+	top: -500;
+}

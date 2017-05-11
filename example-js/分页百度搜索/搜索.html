@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>山寨百度搜索</title>
+	<style type="text/css">
+		html,body,div,input,ul,li {
+			margin: 0;
+			padding: 0;
+		}
+		.logo {
+			width: 220px;
+			height: 80px;
+			margin: 50px auto;
+		}
+		.logo img {
+			width: 100%;
+			height: 100%;
+		}
+		.search {
+			width: 400px;
+			height: 30px;
+			border: 1px solid #ccc;
+			margin: 50px auto;
+			position: relative;
+			
+		}
+		.search .input {
+			border: none;
+			float: left;
+			width: 320px;
+			height: 30px;
+			line-height: 30px;
+			text-indent: 10px;
+			outline: none;
+		
+		}
+		.search .btn {
+			width: 80px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			color: #fff;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: rgba(49,126,243,0.8);
+			cursor: pointer;
+			z-index: 1;
+		}
+		.search .btn:hover {
+			background-color: rgba(49,126,243,1);
+		}
+		.search .span {
+			width: 18px;
+			height: 16px;
+			position: absolute;
+			left: 290px;
+			top: 8px;
+			cursor: pointer;
+			background: url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png) no-repeat 0 0;
+		}
+		.search .span:hover {
+			background-position: 0 -20px;
+		}
+		.search ul {
+			position: absolute;
+			width: 398px;
+			top: 31px;
+			left: 0;
+			font-weight: 700;
+			color: #000;
+			border: 1px solid #ccc;
+			border-top: none;
+			background-color: #fff;
+			list-style: none;
+			display: none;
+			text-indent: 10px;
+		}
+		.search ul .note {
+			cursor: pointer;
+		}
+		.search ul .note.hover {
+			background-color: #ccc;
+
+		}
+		.search ul .q {
+			font-weight: 500;
+			
+		}
+		.search ul li {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="logo">
+
+		<img src="https://www.baidu.com/img/bd_logo1.png">
+
+	</div>
+	<div class="search">
+		<input type="text" class="input">
+		<div class="btn">搜索</div>
+		<span class="span"></span>
+		<ul>
+			
+		</ul>
+	</div>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript">
+	'use strict';
+	$(function(){
+		var input = $('.search .input'),
+			btn = $('.search .btn'),
+			ul = $('.search ul');
+		//http://suggestion.baidu.com/su?wd='+v+'&cb=searchD
+		//https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd='+v;
+		input.on('input',function(){
+			input.css({borderColor: 'rgb(49,126,243)'});
+			$.ajax({
+				type: 'get',
+				url: 'http://suggestion.baidu.com/su',
+				data: {
+					wd: input.val()
+				},
+				dataType: 'jsonp',
+				jsonp: 'cb',
+				success: function(data){
+					var q = data.q,
+						s = data.s,
+						str = '';
+					for(var i=0,len=s.length; i<len; i++){
+						str += '<li>'+s[i]+'</li>';
+					};
+					ul.html(str).show()
+					$('.search ul li').click(function(){
+						input.val($(this).html());
+						ul.hide();
+					});
+					
+					ul.mouseover(function(){
+						input.off("blur");
+					})
+					ul.mouseout(function(){
+						input.blur(function(){
+							ul.hide();
+						});
+					})
+					
+				}
+			})
+		});
+		btn.click(function(){
+			var v = input.val();
+			if(v.trim().length == 0 ) return ;
+			location.href = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd='+v;
+		})
+		input.on('focus',function(){
+			input.css({
+				borderColor: 'red'
+			})
+		});
+		
+	})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<a href="javascript:;" ng-click="changeName()">改变name值</a>
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			
+			app.controller("main" , function($scope , $rootScope){
+				$scope.name = "abc123";
+				$rootScope.age = 123;
+				$scope.obj = {
+					name : "abc123",
+					age : 18
+				}
+				
+				$scope.changeName = function(){
+//					$scope.name = "zhuiszhu";
+//					$scope.obj = {name:"zhu123"};
+					$scope.obj.name = "zhuiszhu";
+				}
+				
+				$scope.$watch("obj" , function(newValue , oldValue){
+					console.log(newValue);
+					console.log(oldValue);
+				} , true);
+				
+			});
+			
+			
+		</script>
+	</body>
+</html>

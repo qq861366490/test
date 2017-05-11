@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,
+			body,
+			div {
+				margin: 0;
+				padding: 0;
+			}
+
+			div{
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				background-color: blue;
+			}
+			div.top {
+				right:200px;
+				top:150px;
+				background-color: green;
+			}
+			div.end {
+				right:100px;
+				top:250px;
+				background-color: #c33;
+			}
+			div.move {
+				left: 100px;
+				top: 400px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="top">(right:200,top:150)</div>
+		<div class="end">(right:100,top:250)</div>
+
+		<div class="move"></div>
+		<script type="text/javascript">
+			'use strict';
+			window.onload = function(){
+				var div = document.querySelector('.move');
+				//元素的位置
+
+				var clientW = document.documentElement.clientWidth;
+				
+				document.onclick = function(e){
+					e = e || window.event;
+					var x = -(clientW - e.clientX - 200),
+					    y = -(e.clientY-150);
+
+					//求抛物线的a值
+					// y = ax*x + b*x;
+					// -100 = 10000a + 100b;
+					// y = a*x*x + b*x   //*(100/x)
+					//y+100 = (x*x*-10000)*a;
+					var a = (100*y/x+100)/(100*x-10000),
+					    b = (-100 - 10000*a)/100;
+
+					a = a.toFixed(4);
+					b = b.toFixed(4);
+					
+					//自己的相对位置（出发点是(0,0)）
+					var l = x,
+						t = y;
+					//开启定时器
+					var timer = setInterval(function(){
+						//x轴方向运动
+						l += 10;
+						//根据x获取y
+						t = a * l * l + b * l;
+
+						//临界条件（当x>重点横坐标）
+						if(l >= 100){
+							l = 100;
+							t = -100;
+							clearInterval(timer);
+						}
+						div.style.left = clientW + l - 200 - 20 + 'px';
+						div.style.top = 150 - t + 'px';
+					},13);
+				}
+
+			}
+			function css(elem,style){
+				if(window.getComputedStyle){
+					return window.getComputedStyle(elem)[style];
+				}
+				return elem.currentStyle[style];
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body ng-controller="main">
+		
+		<div ng-controller="sub">
+			<a href="javascript:;" ng-click="send()">开始发送</a>
+			<div ng-controller="sun"></div>
+			
+		</div>
+		<div ng-controller="sub1"></div>
+		
+		
+		<a href="javascript:;" ng-click="changeName()">改变name值</a>
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			
+			app.controller("main" , ["$scope",function($scope){
+				console.log("父级控制器被初始化了");
+				
+				
+				$scope.$on("main" , function(event , data1){
+					console.log("开始向子级发送事件");
+					
+					$scope.$broadcast("sub1" , data1);
+				})
+			}]);
+			
+			
+			app.controller("sub" , ["$scope",function($scope){
+				console.log("自己控制器被初始化了");
+				
+				$scope.send = function(){
+					
+					$scope.$emit("main" , {name:"abc"});
+					
+				}
+			}]);
+			
+			app.controller("sub1" , ["$scope",function($scope){
+				console.log("兄弟级控制器被初始化了");
+				
+				
+				$scope.$on("sub1" , function(event , data1){
+					console.log(data1);
+				})
+			}]);
+			
+			
+			app.controller("sun" , ["$scope",function($scope){
+				$scope.$on("abc" , function(event , data1){
+					console.log("子级监听的事件被触发了:"+data1);
+				});
+			}]);
+			
+		</script>
+	</body>
+</html>

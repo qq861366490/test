@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--指令:--> 
+		<!--ng-app:声明angular作用范围-->
+		<!--ng-controller : 声明控制器作用范围-->
+		<!--ng-init: 初始化所执行的表达式-->
+		<!--ng-click : 绑定点击事件所执行的方法-->
+		<!--ng-repeat : 循环遍历数组结构-->
+		<!--ng-show: 值为true时,显示该元素 ;反之隐藏该元素-->		
+		<!--ng-hide: 值为true时,隐藏该元素;反之显示该元素-->
+		<!--ng-if: 值为true时,该元素存在;反之该元素不存在-->
+		<!--ng-bind:绑定数据结构-->
+		<!--ng-bind-template: 绑定数据结构(可进行拼接)-->
+		<!--ng-src:动态引入src地址(变量值必须加{{}}),避免浏览器解析无意义src,发送错误的请求-->
+		<!--ng-href :动态引入href地址(变量值必须加{{}}),道理同上-->
+		<!--ng-model: 将表单元素和数据模型进行双向绑定-->
+		<!--ng-class:-->
+		<!--1):用法1(不推荐)  ng-class="level"  $scope.level = "le1"-->
+		<!--2):用法2  ng-class="{true: 'a',false : 'b' }[isTrue]" 当isTrue为true的时候,class 名会被添加上a 否则 会被添加上b-->
+		<!--2):用法3  ng-class="{'a':true,'b':true,'c':false}" 该元素会被添加上class a  class b 而并不会被添加上class c-->
+		
+		<!--服务:-->
+		<!--$scope : 局部范围内挂载数据模型到页面-->
+		<!--$scope.$apply() : 强制更新视图 -->
+		<!--$rootScope : 全局范围内挂载数据模型到页面-->
+		<!--$timeout : 参考setTimeout(会更新视图)-->
+		<!--$interval : 参考setInterval(会更新视图)-->
+		<!--$http : 发送ajax请求,在得到数据后,如果有数据模型发生改变,会自动更新视图--> 
+		<!--.get()
+		.post("http://www.baidu.com",{goodsid:"1234",price:""})
+		.jsonp()-->
+		<!--$http({
+			method : 'post',
+			data : {}
+		}).success(function(data){
+			
+		});-->
+		
+		<!--$sce: 可通过该服务让页面信任指定的html结构,让浏览器正常解析html代码-->
+		<!--.trustAsJs() 信任js
+		.trustAsResourceUrl() 信任资源url
+		.trustAsUrl() 信任url
+		.trustAsHtml() 信任html-->
+		
+		
+		
+		<!--过滤器:-->
+		<!--currency: 格式化为货币形式, 默认为美元 ,第一个参数为货币符号,第二个参数为精确到几位小数点(默认两位)-->
+		<!--lowercase/uppercase: 将字符串转换为大小写-->
+		<!--orderBy : 将列表按照指定的属性进行一个排序,并展示出来 例如{list | orderBy : "name" : -1}  列表数据按照name属性值进行一个降序排列-->
+		
+		
+		
+		<!--自定义服务:-->
+		<!--.service("服务名" , function(){
+			
+			this.name = "abc"
+		});-->
+		<!--.factory("服务名" , function(){
+			reutrn function(){}
+		})-->
+		<!--.provider("服务名" , function(){
+			return {
+				
+				name : "abc",
+				age : 18,
+				$get : function(){
+					return function(){}
+				}
+			}
+		})-->
+		
+		<!--配置服务:-->
+		<!--.config(function(服务名Provider){
+			服务名Provider.需要修改的属性名
+		})-->
+		
+		<!--.config(["服务名Provider" , "服务名2Provider" , function(服务名Provider , 服务名2Provider){
+			
+		}])-->
+		
+		<!--自定义指令:-->
+		<!--.direction("指令名(驼峰命名法)" , function(){
+			return {
+				
+			}
+		})-->
+		
+		<!--自定义过滤器:-->
+		<!--.filter("过滤器名" , function(){
+			return function(原数据 , 过滤器参数1 , 过滤器参数2){
+				return 处理后的数据;	
+			}
+		})-->
+		
+		
+		<!--控制器内使用过滤器:-->
+		<!--控制器可被当做服务注入到控制器中:
+			1)  function($scope , 过滤器名Filter){
+				过滤器名Filter(原数据,参数1,...);
+			}
+			
+			2)  function($scope , $filter){
+				$filter("过滤器名")(原数据,参数1,...);
+			}
+		-->   
+		
+	</body>
+</html>

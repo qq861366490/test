@@ -1,0 +1,141 @@
+/*-----------------header--------------------*/
+header ul li:nth-child(5) a{
+	color:#e4392a;
+	border-bottom:3px solid #e4392a;
+}
+/*-----------------banner--------------------*/
+.banner{
+	width:100%;
+	height:300px;
+	position:relative;
+}
+.banner img{
+	width:100%;
+	height:100%;
+	display:block;
+}
+.banner div{
+	width:100%;
+	height:54px;
+	background:url(../img/a1.png) no-repeat center;
+	background-size:cover;
+	position:absolute;
+	bottom:-30px;
+}
+/*-----------------news--------------------*/
+.news{
+	width:100%;
+	margin-top:30px;
+	margin-bottom:50px;
+	text-align:center;
+}
+.news h1{
+	margin-bottom:24px;
+}
+.news h3{
+	margin-bottom:54px;
+	color:#cacace;
+}
+.news h3 span{
+	color:#f00;
+}
+.news ul{
+	width:90%;
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	margin:0 auto;
+}
+.news ul li{
+	width:22%;
+	margin-bottom:30px;
+}
+.news ul li h4{
+	float:left;
+	width:52px;
+	height:42px;
+	border:1px solid #e2e3e8;
+	background:#f0f2f5;
+	padding-top:10px;
+	margin-left:10px;
+	margin-top:20px;
+	margin-bottom:24px;
+}
+.news ul li h2{
+	float:right;
+	font-size:14px;
+	width:170px;
+	border-bottom:1px solid #e2e3e8;
+	margin-right:10px;
+	margin-top:20px;
+	padding-bottom:16px;
+}
+.news ul li p{
+	clear:both;
+	margin-left:10px;
+	margin-right:10px;
+	text-align:left;
+	color:#666;
+	font-size:14px;
+	line-height:20px;
+}
+.news ul li div{
+	width:100%;
+	height:175px;
+	border:1px solid #e2e3e8;
+}
+.news ul li a span{
+	width:100%;
+	display:block;
+	transition:all 1s;
+}
+.news ul li a span img{
+	display:block;
+	width:100%;
+}
+.news ol{
+	width:35%;
+	margin:0 auto;
+	margin-top:50px;
+	padding-bottom:30px;
+	display:flex;
+	justify-content:space-between;
+}
+.news ol li{
+	float:left;
+}
+.news ol li a{
+	width:40px;
+	height:40px;
+	display:block;
+	background:#edecec;
+	line-height:40px;
+	text-align:center;
+	border-radius:6px;
+	font-weight:bold;
+}
+.news ol li:nth-child(2) a{
+	background:#f00;
+	color:#fff;
+}
+.news ul li:hover span{
+	transform:rotateY(180deg);
+}
+.news ul li:hover div{
+	border:1px solid #f00;
+}
+.news ul li h2 a:hover{
+	color:#f00;
+}
+
+
+@media only screen and (min-width: 100px) and (max-width: 1250px) {
+	.news ul li{
+		width:45%;
+	}
+}
+@media only screen and (min-width: 100px) and (max-width: 630px) {
+	.news ul li{
+		width:95%;
+	}
+}

@@ -1,0 +1,24 @@
+1 创建github账号
+
+2 创建github项目 (选择需要的.gitignore文件模板)
+//.gitignore文件用来记录git提交的时候需要忽略的目录或者文件
+
+3 生成本地秘钥
+ 1) ssh-keygen -t rsa -C "你的github账户注册时的邮箱"
+ 2)	确认秘钥生成路径
+ 3) 输入密码
+ 4) 确认密码
+
+ 4 找到秘钥文件:  id_rsa.pub 并用文本格式打开 并复制秘钥内容
+
+ 5 打开你的github账户  点左边的编辑资料  ==>  SSH and GPG keys  ==> new ssh key  ==> 填写秘钥标题(自定义)  在key当中粘贴上一步复制的秘钥  ==> 点击add ssh key
+
+ 6 克隆代码到本地
+ 克隆的目录不要git init (git init过就换个路径)
+ git clone "git仓库远端地址"
+ 在个人资料中  找到Repositories (项目) 然后选择需要克隆的项目 点击进入 在项目的右上角有 clone or download 绿色按钮  可获得 git仓库远端地址  (推荐使用ssh的github原生协议)
+
+ 7 将本地库推送到远端库
+ git push -u origin master
+-u 代表记录本次关联 仅在第一次推送使用  后期可不使用该参数
+

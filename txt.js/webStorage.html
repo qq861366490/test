@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		webStorage (sessionStorage  localStorage)
+		
+		1 cookie 容量4k  webStorage 容量5M
+		
+		2 cookie会随着请求发送到服务器  storage不会
+		
+		3 没有时间限制
+		
+		session local区别
+		
+		session基于单次会话存储  当所有相关页面被关闭或者关闭整个浏览器  则sessionStorage被清除  
+		local长期存储,除非用户主动清除浏览器缓存,或者程序主动调用clear方法,否则localStorage数据会一直存在<br /><br /><br />
+		<a href="javascript:localSetItem();">存数据</a>
+		<a href="javascript:localGetItem();">取数据</a>
+		<a href="javascript:localRmItem('abc');">删除数据</a>
+		<a href="javascript:localClearAll();">删除所有数据</a>
+		
+		<a href="javascript:sessionSetItem();">存session数据</a>
+		<a href="javascript:sessionGetItem();">取session数据</a>
+		<script>
+			
+//			setItem(key,value) key为存数据时的标识,为字符串类型  value 为存入的值  也为字符串类型  (注意:web本地存储仅支持字符串类型格式的数据存储,如若需要存储对象类型,请自行转换数据类型)
+//			getItem(key) key为存数据时的标识  该函数返回key所对应的值
+
+//			removeItem(key) 删除指定key的本地存储value值
+			
+//			localStorage.clear() 删除localStorage当中所有存储的值 
+			
+			function localSetItem(){
+				
+				localStorage.setItem("aaa","这是aaa的值");
+				localStorage.setItem("abc","这是abc的值");
+			}
+			
+			function localGetItem(){
+				var aaa = localStorage.getItem("aaa");
+				var abc = localStorage.getItem("abc");
+//				
+				console.log("aaa的值为:"+aaa);
+				console.log("abc的值为:"+abc);
+			}
+			
+			function localClearAll(){
+				localStorage.clear();
+			}
+			
+			function localRmItem(itemKey){
+				localStorage.removeItem(itemKey);
+			}
+			
+			function sessionSetItem(){
+				sessionStorage.setItem("oneTxt","这是第一次使用sessionStorage");
+			}
+			
+			function sessionGetItem(){
+				var txt = sessionStorage.getItem("oneTxt");
+				alert(txt);
+			}
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			*{
+				margin:0;padding:0;
+			}
+			ul,ol{
+				list-style:none;
+			}
+			body{
+				background:#999;
+			}
+			nav{
+				width:500px;
+				height:500px;
+				margin:300px auto;
+				position:relative;
+			}
+			ul{
+				width:100px;
+				height:100px;
+				margin:0 auto;
+				position:absolute;
+				left:200px;
+				top:75px;
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:name 2s linear infinite;
+			}
+			ul li{
+				width:100px;
+				height:100px;
+				background:#fff;
+				border:1px solid #000;
+				position:absolute;
+				line-height:100px;
+				text-align:center;
+			}
+			ul li:nth-child(1){
+				transform:translateZ(50px);
+			}
+			ul li:nth-child(2){
+				transform:translateZ(-50px);
+			}
+			ul li:nth-child(3){
+				transform:rotateX(90deg) translateZ(50px);
+			}
+			ul li:nth-child(4){
+				transform:rotateX(90deg) translateZ(-50px);
+			}
+			ul li:nth-child(5){
+				transform:rotateY(90deg) translateZ(50px);
+			}
+			ul li:nth-child(6){
+				transform:rotateY(90deg) translateZ(-50px);
+			}
+			nav:hover ul{
+				transform:rotateX(360deg) rotateY(360deg);
+			}
+			ol{
+				width:300px;
+				height:300px;
+				margin:0 auto;
+				position:relative;
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:name 4s linear infinite;
+			}
+			ol li{
+				width:300px;
+				height:300px;
+				background:#000;
+				border:1px solid #000;
+				position:absolute;
+				opacity:0.3;
+				color:#fff;
+				line-height:300px;
+				font-size:40px;
+				text-align:center;
+			}
+			ol li:nth-child(1){
+				transform:translateZ(150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li1 3s linear infinite alternate;
+			}
+			ol li:nth-child(2){
+				transform:translateZ(-150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li2 3s linear infinite alternate;
+			}
+			ol li:nth-child(3){
+				transform:rotateX(90deg) translateZ(150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li3 3s linear infinite alternate;
+			}
+			ol li:nth-child(4){
+				transform:rotateX(90deg) translateZ(-150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li4 3s linear infinite alternate;
+			}
+			ol li:nth-child(5){
+				transform:rotateY(90deg) translateZ(150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li5 3s linear infinite alternate;
+			}
+			ol li:nth-child(6){
+				transform:rotateY(90deg) translateZ(-150px);
+				transition:all 4s;
+				transform-style:preserve-3d;
+				animation:li6 3s linear infinite alternate;
+			}
+			nav:hover ol{
+				transform:rotateX(360deg) rotateY(360deg);
+			}
+			nav:hover ol li:nth-child(1){
+				transform:translateZ(400px);
+			}
+			nav:hover ol li:nth-child(2){
+				transform:translateZ(-400px);
+			}
+			nav:hover ol li:nth-child(3){
+				transform:rotateX(90deg) translateZ(400px);
+			}
+			nav:hover ol li:nth-child(4){
+				transform:rotateX(90deg) translateZ(-400px);
+			}
+			nav:hover ol li:nth-child(5){
+				transform:rotateY(90deg) translateZ(400px);
+			}
+			nav:hover ol li:nth-child(6){
+				transform:rotateY(90deg) translateZ(-400px);
+			}
+			@keyframes name{
+				from{transform:rotateX(0deg) rotateY(0deg);}
+				to{transform:rotateX(360deg) rotateY(360deg);}
+			}
+			
+			@keyframes li1{
+				from{transform:translateZ(150px);}
+				to{transform:translateZ(400px);}
+			}
+			@keyframes li2{
+				from{transform:translateZ(-150px);}
+				to{transform:translateZ(-400px);}
+			}
+			@keyframes li3{
+				from{transform:rotateX(90deg) translateZ(150px);}
+				to{transform:rotateX(90deg) translateZ(400px);}
+			}
+			@keyframes li4{
+				from{transform:rotateX(90deg) translateZ(-150px);}
+				to{transform:rotateX(90deg) translateZ(-400px);}
+			}
+			@keyframes li5{
+				from{transform:rotateY(90deg) translateZ(150px);}
+				to{transform:rotateY(90deg) translateZ(400px);}
+			}
+			@keyframes li6{
+				from{transform:rotateY(90deg) translateZ(-150px);}
+				to{transform:rotateY(90deg) translateZ(-400px);}
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<ol>
+				<li>前面</li>
+				<li>后面</li>
+				<li>左面</li>
+				<li>右面</li>
+				<li>上面</li>
+				<li>下面</li>
+			</ol>
+		</nav>
+	</body>
+</html>

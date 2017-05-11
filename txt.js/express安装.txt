@@ -1,0 +1,11 @@
+1 全局安装express    npm install express -g
+
+2,检查是否安装成功    express -h  如果提示不是内部命令或外部命令  说明未安装成功
+
+3,若未安装成功  则需要全局安装   express-generator    : npm i express-generator -g
+
+ 4 通过express来创建项目    express -e 项目名   参数-e 代表项目使用ejs模板
+
+ 5  安装项目依赖    npm i  或  npm install
+
+ 6 通过npm start  或者   node ./bin/www  来启动服务  访问页面即可

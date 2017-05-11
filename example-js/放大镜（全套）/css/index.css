@@ -1,0 +1,103 @@
+html,
+body,
+div,
+img {
+	margin: 0;
+	padding: 0;
+}
+
+.reading-glass {
+	width: 350px;
+	margin-top: 50px;
+	margin-left: 100px;
+}
+.reading-glass .glass-main {
+	position: relative;
+	height: 350px;
+	border: 1px solid #ccc;
+}
+.reading-glass .glass-main .small-wrap {
+	position: relative;
+	height: 100%;
+}
+.reading-glass .small-wrap img {
+	width: 100%;
+	height: 100%;
+}
+.reading-glass .small-wrap .filter {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 238px;
+	height: 238px;
+	border: 1px solid #ccc;
+	background: rgba(255,255,0,.4);
+}
+.reading-glass .glass-main .large-wrap {
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	left: 352px;
+	top: 0;
+	width: 480px;
+	height: 480px;
+	border: 1px solid #ccc;
+}
+.reading-glass .large-wrap img {
+	/*
+		滤镜 / 大图盒子  == 小图盒子 / 大图
+		240 / 480   =  350 / 700
+	*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 700px;
+	height: 700px;
+}
+
+.reading-glass .glass-extra {
+	position: relative;
+	margin-top: 20px;
+	width: 350px;
+	height: 54px;
+}
+.reading-glass .glass-extra .arrow {
+	position: absolute;
+	top: 50%;
+	width: 22px;
+	height: 32px;
+	margin-top: -16px;
+	background: url(../imgs/sprite.png);
+	cursor: pointer;
+}
+.reading-glass .glass-extra .arrow-prev {
+	left: 0;
+	background-position: -30px 0;
+}
+.reading-glass .glass-extra .arrow-next {
+	right: 0;
+	background-position: 0 -30px;
+}
+
+/*可视区域*/
+.reading-glass .img-wrap {
+	overflow: hidden;
+	position: absolute;
+	width: 290px;
+	height: 54px;
+	left: 30px;
+}
+.reading-glass .img-wrap .img-wrap-inner {
+	position: absolute;
+	width: 348px;
+}
+.reading-glass .img-wrap img {
+	float: left;
+	width: 50px;
+	border: 2px solid #fff;
+	margin: 0 2px;
+}
+.reading-glass .img-wrap img.img-hover {
+	border-color: #e53e41;
+}

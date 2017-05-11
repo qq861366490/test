@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Highcharts</title>
+</head>
+<body>
+    <div class="container"></div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/highcharts.js"></script>
+	<script>
+	    $(function(){
+	    	$.ajax({
+	        	type:'get',
+	        	url:'http://192.168.55.44/jsonp/getData.php',
+	        	data:{
+
+	        	},
+	        	dataType:'jsonp',
+	        	success:function(data){
+	        		console.log(data);
+	        		console.log(data.result[0].city);
+                      $('.container').highcharts({                 
+		        chart: {
+		            type: 'column'                        
+		        },
+		        title: {
+		            text: data.title ,                
+		        },
+		        subtitle:  {
+		            text:'我是余丹娜',
+		        },
+		        xAxis: {
+		            categories: ['第一季度','第二季度' ,'第三季度','第四季度' ]  
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'something'                 
+		            }
+		        },
+		        series: [{                              
+			            name:data.result[0].city ,                         
+			            data:data.result[0].ave_salary                       
+			        }, 
+			        {
+			            name: data.result[1].city,
+			            data: data.result[1].ave_salary 
+			        },
+			        {
+			            name: data.result[2].city,
+			            data: data.result[2].ave_salary 
+			        }
+			        
+		        	]
+    			});
+  
+	        	}
+
+	        })
+           
+	    })
+	        
+	</script>
+</body>
+</html>

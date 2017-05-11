@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,html{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				display: block;
+				margin: 30px auto;
+				border:1px dashed #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var can = document.getElementById("can").getContext("2d");
+			
+			//保存画布状态
+			can.save();
+			
+			//对画布做位移 x,y  x代表水平方向位移 y代表垂直方向位移
+			can.translate(250,250);
+			//对画布进行顺时针旋转 逆时针可用负值
+//			can.rotate(-0.15*Math.PI);
+			can.scale(0.5,0.5);//画布缩放
+			can.fillRect(0,0,300,70);
+			
+			//恢复上次保存的画布状态
+			can.restore();
+			can.arc(0,0,100,0,2*Math.PI);
+			can.fill();
+		</script>
+	</body>
+</html>
